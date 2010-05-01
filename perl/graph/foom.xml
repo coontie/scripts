@@ -1,0 +1,16 @@
+<xml>
+<total>
+<router name="a1">
+	<neighbor remote-host="x"/>
+	<neighbor remote-host="y"/>
+	<neighbor remote-host="z"/>
+	<neighbor remote-host="v"/>
+</router>
+<router name="a2">
+	<neighbor remote-host="x"/>
+	<neighbor remote-host="y"/>
+	<neighbor remote-host="z"/>
+	<neighbor remote-host="v"/>
+</router>
+</total>
+</xml>

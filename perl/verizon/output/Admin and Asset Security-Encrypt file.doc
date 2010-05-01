@@ -1,0 +1,15 @@
+Title: Encrypt file
+Actors:
+	Encryption Engine
+Activities:
+	Activity #1 Start 
+	Activity #2 Receive encryption request 
+	Activity #3 Retrieve file location details 
+	Activity #4 Fetch encryption key 
+	Activity #5 Encrypt file 
+	Activity #6 End 
+	Activity #7 Retrieve encryption method 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

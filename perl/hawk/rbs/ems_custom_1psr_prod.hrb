@@ -1,0 +1,1314 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ruleBase>
+	<version>4.6.0</version>
+	<name><![CDATA[ems_custom_1psr_prod]]></name>
+	<schedule>1PSR_workweek</schedule>
+	<author>cib-prodems03(162.111.85.92) at 16:21 Mon, Feb 26, 2007</author>
+	<lastModification>a485029 on host cib-prodems03(162.111.85.92) at 18:01 Fri, Mar 30, 2007</lastModification>
+	<comment><![CDATA[]]></comment>
+	<rule>
+		<name><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7222:getQueues(queueRegExp=Wachovia.CIB.1PSR.PS.OUT.PHASE3):60]]></name>
+		<schedule></schedule>
+		<overRuling>0</overRuling>
+		<dataSource>
+			<microAgentName><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7222]]></microAgentName>
+			<methodName>getQueues</methodName>
+			<dataElement name="queueRegExp">
+				<dataObject class="java.lang.String" ><![CDATA[Wachovia.CIB.1PSR.PS.OUT.PHASE3]]></dataObject>
+			</dataElement>
+			<interval>60000</interval>
+		</dataSource>
+		<test>
+			<name><![CDATA[(receiverCount != 15)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.NotEqualsNumber" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[receiverCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Integer"  value="15" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} has ${receiverCount} receivers. , From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSWarning: Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers., To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSWarning: Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} has ${receiverCount} receivers. ]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount > 50)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="50" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!, From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSWarning: Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!, To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSWarning: Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount > 100)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="100" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!, From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSError: Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!, To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSError: Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+	</rule>
+	<rule>
+		<name><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7222:getQueues(queueRegExp=Wachovia.CIB.1PSR.PS.OUT.CFS.CONFIRMATION.PHASE3):60]]></name>
+		<schedule></schedule>
+		<overRuling>0</overRuling>
+		<dataSource>
+			<microAgentName><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7222]]></microAgentName>
+			<methodName>getQueues</methodName>
+			<dataElement name="queueRegExp">
+				<dataObject class="java.lang.String" ><![CDATA[Wachovia.CIB.1PSR.PS.OUT.CFS.CONFIRMATION.PHASE3]]></dataObject>
+			</dataElement>
+			<interval>60000</interval>
+		</dataSource>
+		<test>
+			<name><![CDATA[(receiverCount != 1)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.NotEqualsNumber" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[receiverCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Integer"  value="1" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers., From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSWarning: Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers., To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSWarning: Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount > 50)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="50" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!, From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSWarning: Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!, To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSWarning: Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount > 100)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="100" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!, From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSError: Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!, To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSError: Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+	</rule>
+	<rule>
+		<name><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7222:getQueues(queueRegExp=Wachovia.CIB.1PSR.PS.OUT.CFS.REPLAY.PHASE3):60]]></name>
+		<schedule></schedule>
+		<overRuling>0</overRuling>
+		<dataSource>
+			<microAgentName><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7222]]></microAgentName>
+			<methodName>getQueues</methodName>
+			<dataElement name="queueRegExp">
+				<dataObject class="java.lang.String" ><![CDATA[Wachovia.CIB.1PSR.PS.OUT.CFS.REPLAY.PHASE3]]></dataObject>
+			</dataElement>
+			<interval>60000</interval>
+		</dataSource>
+		<test>
+			<name><![CDATA[(receiverCount != 1)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.NotEqualsNumber" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[receiverCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Integer"  value="1" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} has ${receiverCount} receivers., From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSWarning: Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers., To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSWarning: Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} has ${receiverCount} receivers.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount > 50)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="50" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!, From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSWarning: Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!, To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSWarning: Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount > 100)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="100" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!, From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSError: Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!, To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSError: Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+	</rule>
+	<rule>
+		<name><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7222:getQueues(queueRegExp=Wachovia.CIB.1PSR.PS.OUT.CFS.CONFIRMATION.GLOSS):60]]></name>
+		<schedule></schedule>
+		<overRuling>0</overRuling>
+		<dataSource>
+			<microAgentName><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7222]]></microAgentName>
+			<methodName>getQueues</methodName>
+			<dataElement name="queueRegExp">
+				<dataObject class="java.lang.String" ><![CDATA[Wachovia.CIB.1PSR.PS.OUT.CFS.CONFIRMATION.GLOSS]]></dataObject>
+			</dataElement>
+			<interval>60000</interval>
+		</dataSource>
+		<test>
+			<name><![CDATA[(receiverCount != 1)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.NotEqualsNumber" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[receiverCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Integer"  value="1" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers., From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSWarning: Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers., To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSWarning: Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount > 50)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="50" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!, From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSWarning: Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!, To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSWarning: Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount > 100)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="100" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!, From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSError: Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!, To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSError: Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+	</rule>
+	<rule>
+		<name><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7222:getQueues(queueRegExp=Wachovia.CIB.1PSR.PS.OUT.CFS.REPLAY.GLOSS):60]]></name>
+		<schedule></schedule>
+		<overRuling>0</overRuling>
+		<dataSource>
+			<microAgentName><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7222]]></microAgentName>
+			<methodName>getQueues</methodName>
+			<dataElement name="queueRegExp">
+				<dataObject class="java.lang.String" ><![CDATA[Wachovia.CIB.1PSR.PS.OUT.CFS.REPLAY.GLOSS]]></dataObject>
+			</dataElement>
+			<interval>60000</interval>
+		</dataSource>
+		<test>
+			<name><![CDATA[(receiverCount != 1)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.NotEqualsNumber" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[receiverCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Integer"  value="1" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers., From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSWarning: Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers., To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSWarning: Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount > 50)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="50" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!, From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSWarning: Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!, To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSWarning: Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount > 100)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="100" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!, From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSError: Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!, To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSError: Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+	</rule>
+	<rule>
+		<name><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7222:getQueues(queueRegExp=Wachovia.CIB.1PSR.PS.IN.ROUTE):60]]></name>
+		<schedule></schedule>
+		<overRuling>0</overRuling>
+		<dataSource>
+			<microAgentName><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7222]]></microAgentName>
+			<methodName>getQueues</methodName>
+			<dataElement name="queueRegExp">
+				<dataObject class="java.lang.String" ><![CDATA[Wachovia.CIB.1PSR.PS.IN.ROUTE]]></dataObject>
+			</dataElement>
+			<interval>60000</interval>
+		</dataSource>
+		<test>
+			<name><![CDATA[(receiverCount != 1)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.NotEqualsNumber" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[receiverCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Integer"  value="1" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers., From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSWarning: Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers., To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSWarning: Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount > 50)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="50" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!, From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSWarning: Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!, To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSWarning: Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount > 100)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="100" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!, From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSError: Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!, To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSError: Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+	</rule>
+	<rule>
+		<name><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7222:getQueues(queueRegExp=Wachovia.CIB.1PSR.PS.AUDIT.IN):60]]></name>
+		<schedule></schedule>
+		<overRuling>0</overRuling>
+		<dataSource>
+			<microAgentName><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7222]]></microAgentName>
+			<methodName>getQueues</methodName>
+			<dataElement name="queueRegExp">
+				<dataObject class="java.lang.String" ><![CDATA[Wachovia.CIB.1PSR.PS.AUDIT.IN]]></dataObject>
+			</dataElement>
+			<interval>60000</interval>
+		</dataSource>
+		<test>
+			<name><![CDATA[(receiverCount != 1)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.NotEqualsNumber" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[receiverCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Integer"  value="1" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers., From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSWarning: Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers., To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSWarning: Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount > 50)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="50" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!, From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSWarning: Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!, To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSWarning: Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount > 100)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="100" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!, From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSError: Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!, To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSError: Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+	</rule>
+	<rule>
+		<name><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7222:getQueues(queueRegExp=Wachovia.CIB.1PSR.PS.OUT.GLOSS):60]]></name>
+		<schedule></schedule>
+		<overRuling>0</overRuling>
+		<dataSource>
+			<microAgentName><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7222]]></microAgentName>
+			<methodName>getQueues</methodName>
+			<dataElement name="queueRegExp">
+				<dataObject class="java.lang.String" ><![CDATA[Wachovia.CIB.1PSR.PS.OUT.GLOSS]]></dataObject>
+			</dataElement>
+			<interval>60000</interval>
+		</dataSource>
+		<test>
+			<name><![CDATA[(receiverCount != 2)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.NotEqualsNumber" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[receiverCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Integer"  value="2" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=NDS.Technology@funb.com, Content=Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers., From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSWarning: Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers., To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[NDS.Technology@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSWarning: Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount > 50)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="50" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=NDS.Technology@funb.com, Content=Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!, From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSWarning: Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!, To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[NDS.Technology@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSWarning: Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount > 100)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="100" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=NDS.Technology@funb.com, Content=Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!, From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSError: Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!, To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[NDS.Technology@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSError: Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+	</rule>
+	<rule>
+		<name><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7222:getQueues(queueRegExp=Wachovia.CIB.1PSR.PS.AUDIT.OUT):60]]></name>
+		<schedule></schedule>
+		<overRuling>0</overRuling>
+		<dataSource>
+			<microAgentName><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7222]]></microAgentName>
+			<methodName>getQueues</methodName>
+			<dataElement name="queueRegExp">
+				<dataObject class="java.lang.String" ><![CDATA[Wachovia.CIB.1PSR.PS.AUDIT.OUT]]></dataObject>
+			</dataElement>
+			<interval>60000</interval>
+		</dataSource>
+		<test>
+			<name><![CDATA[(receiverCount != 1)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.NotEqualsNumber" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[receiverCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Integer"  value="1" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers., From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSWarning: Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers., To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSWarning: Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has ${receiverCount} receivers.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount > 50)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="50" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!, From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSWarning: Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!, To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSWarning: Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has more than 50 messages pending!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount > 100)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="100" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!, From=HawkAgent@wachovia.net, Mail Server=smtp.wachovia.net, Subject=EMSError: Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!, To=CIBPushService.Prod@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[CIBPushService.Prod@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[EMSError: Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Queue ${name} on ${Internal.Agent Name} has more than 100 messages pending!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+	</rule>
+</ruleBase>

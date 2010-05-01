@@ -1,0 +1,26 @@
+Title: Search Report
+Actors:
+	User
+	DDC
+Activities:
+	Activity #1 Start 
+	Activity #2 Log into DDC admin console 
+	Activity #3 Opt to search for a report 
+	Activity #4 Validate user 
+	Activity #5 Choose "Search Report" option 
+	Activity #6 Present "Search Report Parameters" form 
+	Activity #7 Validate access 
+	Activity #8 Present menu of available choices 
+	Activity #9 Enter search criteria 
+	Activity #10 Submit criteria 
+	Activity #11 Perform search 
+	Activity #12 Validate report access rights 
+	Activity #13 Display results 
+	Activity #14 Ask for another search 
+	Activity #15 Make selection re: another search 
+	Activity #16 Perform another search? 
+	Activity #17 End 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

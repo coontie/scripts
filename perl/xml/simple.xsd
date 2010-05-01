@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="export">
+    <xs:complexType>
+      <xs:attribute name="subject" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="import">
+    <xs:complexType>
+      <xs:attribute name="subject" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="local-network">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="import" maxOccurs="unbounded" />
+        <xs:element ref="export" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="service" type="xs:NMTOKEN" use="required" />
+      <xs:attribute name="name" type="xs:NMTOKEN" use="required" />
+      <xs:attribute name="network" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="local-port">
+    <xs:complexType>
+      <xs:attribute name="port" type="xs:NMTOKEN" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="neighbor">
+    <xs:complexType>
+      <xs:attribute name="remote-port" type="xs:NMTOKEN" use="required" />
+      <xs:attribute name="remote-host" type="xs:NMTOKEN" use="required" />
+      <xs:attribute name="neighbor-name" type="xs:NMTOKEN" use="required" />
+      <xs:attribute name="cost" type="xs:NMTOKEN" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="rendezvous">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="router" />
+      </xs:sequence>
+      <xs:attribute name="url" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="router">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="local-port" />
+        <xs:element ref="neighbor" maxOccurs="unbounded" />
+        <xs:element ref="local-network" />
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:NMTOKEN" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

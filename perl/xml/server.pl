@@ -1,0 +1,262 @@
+#!/usr/bin/perl -w
+use IO::Socket::Multicast;
+use XML::Parser;
+use XML::SimpleObject;
+use Data::Dumper;
+use threads;
+use threads::shared;
+use Mail::SendEasy;
+
+use Thread::Queue;
+my $q = new Thread::Queue;
+
+use strict;
+
+my %masterHash = ();
+my %prevReported = ();
+
+my %aliveHash : shared = ();
+
+#for outbound
+use constant DESTINATION => '239.1.1.2:2001'; 
+
+#for inbound
+use constant GROUP => '239.1.1.1';
+use constant PORT  => '2000';
+
+my $socketOut = IO::Socket::Multicast->new(Proto=>'udp',PeerAddr=>DESTINATION);
+my $socketIn = IO::Socket::Multicast->new(Proto=>'udp',LocalPort=>PORT);
+$socketIn->mcast_add(GROUP) || die "Couldn't set group: $!\n";
+$socketOut->mcast_ttl(10);
+
+#master xml config file
+my $file = 'test.xml';
+my $parser = XML::Parser->new(ErrorContext => 2, Style => "Tree");
+my $xmlobj = XML::SimpleObject->new( $parser->parsefile($file) );
+
+#this thread publishes the config file over multicast every 15s
+my $publishConfigThread = threads->new(\&publishConfig); # Spawn the thread
+$publishConfigThread->detach; # Now we officially don’t care any more
+
+#this thread receives the results from the clients and puts them on a queue for processing
+my $receiveResults = threads->new(\&receiveResults); # Spawn the thread
+$receiveResults->detach; # Now we officially don’t care any more
+
+#this thread periodically goes thru the list of clients to make sure the monitors are in contact
+my $checkAliveThread = threads->new(\&checkAliveThread); # Spawn the thread
+$checkAliveThread->detach; # Now we officially don’t care any more
+
+#main driver
+while (1) {
+    #only do stuff if there are items pending in the queue, o/w just loop endlessly
+    if ($q->pending > 0) {
+	my $mainData = $q->dequeue;
+	my ($fromHost, $commandType, $value) = "";
+	($fromHost, $commandType, $value) = ( split (/:/, $mainData) ) [0,1,2];
+	$masterHash{$fromHost}{$commandType} = $value;
+	$aliveHash{$fromHost} = 1;
+	foreach my $host (keys(%masterHash)) {
+	    foreach my $cmdType (keys(%{$masterHash{$host}})) {
+		#print "$host: $cmdType: $masterHash{$host}{$cmdType}\n";
+		my $cmdRcvdValue = $masterHash{$host}{$cmdType};
+		foreach my $servers ($xmlobj->child("config")->children("server")) {
+		    my $server = $servers->attribute('name');
+		    foreach my $command ($servers->children('command')) {
+			$_ = $host;
+			if (/$server/) {
+			    my $commandAttribute = $command->attribute('type');
+			    if ($commandAttribute eq $cmdType) {
+				my $cmdExpValue = $command->child('expected_value')->value;
+				$cmdRcvdValue = 'NOTHING' unless defined ($cmdRcvdValue);
+				if ($cmdExpValue eq $cmdRcvdValue) {
+				    #print "$cmdExpValue = $cmdRcvdValue \n";
+				    if ( defined ($prevReported{$host}{$cmdType}) ) {
+					if ($prevReported{$host}{$cmdType} eq 'TRUE') {
+					    my $msg = "Previously reported problem with $cmdType on $host is now fixed.\n";
+					    sendMail($msg,$host,"FIXED");
+					    logMsg($msg);
+				        }
+				    }
+				    $prevReported{$host}{$cmdType} = 'FALSE';
+				}
+				else {
+				    #complain unless Do Not Care is set -- this is a way to turn off monitoring
+				    #for a given command. Also, do not complain if we got back an empty value, --
+					#we should always get smth back.
+
+					#complain by default = 1
+					my $complainFlag = 1;
+					#turn off if DNC
+					$complainFlag = 0 if ($cmdExpValue eq "DNC");
+					#turn off if Empty value was received -- means p2psmon returned empty string
+					$complainFlag = 0 if ($cmdRcvdValue eq "NOTHING");
+				    complain($host,$cmdType,$cmdExpValue,$cmdRcvdValue) unless ($complainFlag == 0);
+				}
+			    } #end of if ($commandAttribute eq $cmdType)
+			} #end of if (/$server/)
+		    } #end of foreach my $command ($servers->children('command'))
+		} #end of foreach my $servers ($xmlobj->child("config")->children("server")) 
+	    } #end of foreach my $cmdType (keys(%{$masterHash{$host}})) 
+	}
+    }
+}
+
+sub complain
+{
+    my $problemHost    	= $_[0];
+    my $problemCmd 	= $_[1];
+    my $expectedValue  	= $_[2];
+    my $valueGotInstead	= $_[3];
+    #we have to set this in case the problem already exists upon server startup
+    #which leads to $prevReported being undefined
+    $prevReported{$problemHost}{$problemCmd} = 'FALSE' unless defined ($prevReported{$problemHost}{$problemCmd});
+    #only complain if it hasn't been reported previously
+    #that way we don't mailbomb people with the same problem.
+    if ($prevReported{$problemHost}{$problemCmd} eq 'FALSE') {
+	#my $msg = "When $problemHost checked $problemCmd it expected $expectedValue but got $valueGotInstead instead.";
+	my $msg = extractFromXML($problemHost,$problemCmd,"message");
+
+	#send an email with the appropriate msg from the xml, which server reported the problem and
+	#the fact that it's a problem -- needed for a subject line.
+	sendMail($msg,$problemHost,"PROBLEM");
+	logMsg($msg);
+	$prevReported{$problemHost}{$problemCmd} = 'TRUE';
+    }
+}
+
+sub logMsg
+{
+    open (LOGFILE, ">>./server.log");
+    my $currentDate = `date`; 
+    chomp ($currentDate);
+    my $msgToLog = $_[0];
+    print LOGFILE $currentDate . ":" . $msgToLog . "\n";
+    close (LOGFILE);
+}
+
+sub sendMail
+{
+
+    my $to = 'ikantor@caxton.com';
+    my $from = 'unix@caxton.com';
+
+    my $msgToSend = $_[0];
+    my $sourceHost = $_[1];
+	my $emailType = $_[2];
+
+	my $subject = "";	
+
+   	$subject = "RMDS Problem fixed report from " . $sourceHost if ($emailType eq "FIXED");
+    $subject = "RMDS Problem : lost comms with the monitor on " . $sourceHost if ($emailType eq "LOST");
+    $subject = "RMDS Problem : restored comms with the  monitor on " . $sourceHost if ($emailType eq "RESTORED");
+	$subject = "RMDS Problem report from " . $sourceHost if ($emailType eq "PROBLEM");
+
+    my $mail = new Mail::SendEasy(
+	    smtp => 'cnyexchfe01' ,
+	    ) ;
+
+    my $status = $mail->send(
+	    from    => $from,
+	    from_title => 'RMDS Monitor' ,
+	    reply   => $from ,
+	    error   => $from ,
+	    to      => $to ,
+	    subject => $subject ,
+	    msg     => "$msgToSend" ,
+	    html    => "<b>$msgToSend</b>" ,
+	    msgid   => "0101" ,
+	    ) ;
+
+    if (!$status) { print $mail->error ;}
+
+}
+
+sub receiveResults
+{
+    while (1) {
+	my $data = '';
+	$socketIn->recv($data,1024);
+	chomp ($data);
+	$q->enqueue($data);
+	#print "Recvd $data \n";
+	#print "FROM THREAD: " . $q->pending . "items in the queue \n";
+    }
+}
+	
+
+#this extracts one value for a given server name/command type pair
+sub extractFromXML
+{
+	#the name of the server we're interested in
+	my $serverSubmitted  = $_[0];
+	#the command type we're interested in
+	my $commandSubmitted = $_[1];
+	#this is a final value inside the "command" branch - exec, expected value, message
+	my $valueSubmitted   = $_[2];
+
+	foreach my $server ($xmlobj->child("config")->children("server")) {
+		my $serverName = $server->attribute('name');
+		foreach my $command ($server->children('command')) {
+			my $commandType = $command->attribute('type');
+			my $currentValue = $command->child($valueSubmitted)->value;
+			return $currentValue if (($serverName eq $serverSubmitted) and ($commandType eq $commandSubmitted));
+		}
+	}
+}
+
+
+sub checkAliveThread
+{
+    my %hLostComms = ();
+    while (1) {
+	foreach my $server (keys %aliveHash) {
+	    if ($aliveHash{$server} == 0) {
+		my $msg = "Lost communication with the monitor on $server";
+		$hLostComms{$server} = 0 unless defined $hLostComms{$server};
+		if ($hLostComms{$server} == 0) {
+		    logMsg($msg);
+		    sendMail($msg,$server,"LOST");
+		    #set the flag to 1 -- send the emails once only.
+		    $hLostComms{$server} = 1;
+		}
+	    }
+	    else {
+		#everything checks out -- reset the flag
+		#when the main thread encounters this client, it'll set it back to 1
+		#for those that have not communicated, the 0 will be left in place,
+		#triggering the true clause above
+		if ( defined ($hLostComms{$server}) ) {
+		    #alive...
+		    if ( $hLostComms{$server} == 1) {
+			#...but used to be down -- now back up!
+			my $msg = "Restored communication with the monitor on $server";
+			logMsg($msg);
+			sendMail($msg,$server,"RESTORED");
+			#turn the flag off
+			$hLostComms{$server} = 0;
+		    }
+		}
+		$aliveHash{$server} = 0;
+	    }
+	}   #end of foreach
+	sleep 40;
+    }	#end of while (1)
+}
+
+sub publishConfig
+{
+    while (1) {
+    #this code traverses the entire config file.
+	foreach my $servers ($xmlobj->child("config")->children("server")) {
+	    my $server = $servers->attribute('name');
+	    foreach my $command ($servers->children('command')) {
+		my $commandAttribute = $command->attribute('type');
+		my $commandExecValue = $command->child('exec')->value;
+		my $final = "$server:$commandAttribute:$commandExecValue";
+		#print "publishing $final \n";
+		$socketOut->send($final) || die "Couldn't send: $!";
+	    }
+	}
+	sleep 30;
+    } #end of while
+} #end of publishConfig sub

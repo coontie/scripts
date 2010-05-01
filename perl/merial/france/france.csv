@@ -1,0 +1,72 @@
+Team,RICE ID,Source,Destination
+OTC,INT-003,Oracle,CSP
+OTC,INT-007,Oracle,CSP
+OTC,INT-007,Oracle,CSP
+OTC,INT-008,CSP ,Oracle
+OTC,INT-009,CSP ,Oracle
+OTC,INT-023,Pivotal,Oracle
+OTC,INT-025,Oracle,Pivotal
+OTC,INT-026,Oracle,Pivotal
+OTC,INT-031,Oracle,Pivotal
+OTC,INT-032,Oracle,Ariane
+OTC,INT-033.1,Oracle,Ariane
+OTC,INT-035,Oracle,Acor
+OTC,INT-036.1,Oracle,Haras Nationaux
+OTC,INT-036.2,Oracle,Haras Nationaux
+OTC,INT-037,Haras Nationaux,Oracle
+OTC,INT-038,Haras Nationaux,Oracle
+OTC,INT-090,Excel,Oracle
+OTC,INT-200,CSP ,Oracle
+OTC,INT-201,CSP ,Oracle
+OTC,INT-202,CSP ,Oracle
+OTC,INT-203,Oracle,CSP
+OTC,INT-205,EDI,Oracle
+OTC,INT-206,Manugistics,Oracle
+OTC,INT-208,Oracle,CSP
+PTM,INT-094.0,MPS,Oracle
+PTM,INT-094.1,MPS,Oracle
+PTM,INT-094.2,Oracle,MPS
+PTM,INT-094.3,Oracle,MPS
+PTM,INT-094.4,Oracle,MPS
+PTM,INT-094.5,Oracle,MPS
+PTM,INT-094.6,Oracle,MPS
+PTM,INT-107,Oracle,PAO-Weighting software
+PTM,INT-108,Oracle,PAO-Weighting software
+PTM,INT-109,Oracle,PAO-Weighting software
+PTM,INT-110-1,Oracle,MAIA
+PTM,INT-110-2,Oracle,MAIA
+PTM,INT-111,MAIA,Oracle
+PTM,INT-112-1,Oracle,MFM
+PTM,INT-112-2,Oracle,MFM
+PTM,INT-112-3,Oracle,MFM
+PTM,INT-113-1,Oracle,OUAP
+PTM,INT-113-2,Oracle,OUAP
+PTM,INT-113-3,Oracle,OUAP
+PTM,INT-113-4,Oracle,OUAP
+PTM,INT-113-5,Oracle,OUAP
+PTM,INT-115.1,Oracle,Dossier Lot
+PTM,INT-115.2,Oracle,Dossier Lot
+PTM,INT-117-1,Oracle,Cycle time
+PTM,INT-117-2,Oracle,Cycle time
+PTM,INT-118-1,Oracle,GDE
+PTM,INT-118-2,Oracle,GDE
+PTM,INT-119-1,Oracle,GIC
+PTM,INT-119-2,Oracle,GIC
+PTM,INT-139,Oracle,API
+PTP,INT-046.4,Purchasing card - CHDB,Oracle
+PTP,INT-061.1,CARL,Oracle
+PTP,INT-061.2,Oracle,CARL
+PTP,INT-061.3,CARL,Oracle
+PTP,INT-061.4,CARL,Oracle
+PTP,INT-062.1,Oracle,GED AP Workflow
+PTP,INT-062.2,GED AP Workflow,Oracle
+PTP,INT-066,Oracle,XRT
+PTP,INT-125,XRT,Oracle
+PTP,INT-126,Supplier Invoices,Oracle
+PTP,INT-134,Oracle,XRT
+PTP,INT-135,Oracle,POSTE BANQUE
+PTP,INT-208,Streamserve,Oracle
+RTR,INT-070,Oracle,MVMI
+RTR,INT-078,HYPERVISION,Oracle
+RTR,INT-086,Oracle,IDEP
+RTR,INT-089,Oracle,REPORT BASE

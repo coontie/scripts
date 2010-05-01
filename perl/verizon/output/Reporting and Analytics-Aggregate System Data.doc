@@ -1,0 +1,15 @@
+Title: Aggregate System Data
+Actors:
+	DDC Reporting Engine
+Activities:
+	Activity #1 Start 
+	Activity #2 Extract raw metrics from OLTP/ODS 
+	Activity #3 Aggregate metrics 
+	Activity #4 KPI computation required? 
+	Activity #5 Compute KPIs 
+	Activity #6 Load data into DSS 
+	Activity #7 End 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

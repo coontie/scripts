@@ -1,0 +1,26 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+DESTINATION	TESTcl.pl	/^use constant DESTINATION => '226.1.1.1:2000'; $/;"	c
+DESTINATION	client.pl	/^	use constant DESTINATION => '226.1.1.1:2000'; $/;"	c
+DESTINATION	client.pl.2	/^	use constant DESTINATION => '226.1.1.1:2000'; $/;"	c
+DESTINATION	server.pl	/^use constant DESTINATION => '226.1.1.2:2001'; $/;"	c
+DESTINATION	server.pl.2	/^use constant DESTINATION => '226.1.1.2:2001'; $/;"	c
+GROUP	TESTcl.pl	/^use constant GROUP => '230.34.5.143';$/;"	c
+GROUP	client.pl	/^	use constant GROUP => '226.1.1.2';$/;"	c
+GROUP	client.pl.2	/^	use constant GROUP => '226.1.1.2';$/;"	c
+GROUP	server.pl	/^use constant GROUP => '226.1.1.1';$/;"	c
+GROUP	server.pl.2	/^use constant GROUP => '226.1.1.1';$/;"	c
+PORT	TESTcl.pl	/^use constant PORT  => '58920';$/;"	c
+PORT	client.pl	/^	use constant PORT  => '2001';$/;"	c
+PORT	client.pl.2	/^	use constant PORT  => '2001';$/;"	c
+PORT	server.pl	/^use constant PORT  => '2000';$/;"	c
+PORT	server.pl.2	/^use constant PORT  => '2000';$/;"	c
+getConfig	TESTcl.pl	/^sub getConfig$/;"	s
+getConfig	client.pl	/^sub getConfig$/;"	s
+getConfig	client.pl.2	/^sub getConfig$/;"	s
+init	Parse.pm	/^	sub init$/;"	s
+publishConfig	server.pl	/^sub publishConfig$/;"	s

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rendezvous SYSTEM "http://www.rv.tibco.com/dtd/rv">
+<rendezvous url="http://cib-prv1wac01.usa.wachovia.net:27580">
+  <configuration timestamp="20061207124048-0500">
+    <rvrd-parameters>
+      <logging connections="no" subject-data="no" subject-interest="no" />
+      <router maximum-backlog="0" name="cib-prv1wac01-openlink">
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-prv1wac01" local-port="10011" neighbor-name="cib-prodrv02-openlink" remote-host="cib-prodrv02" remote-port="50021" type="ACTIVE" />
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-prv1wac01" local-port="10011" neighbor-name="cib-drrv02-openlink" remote-host="cib-drrv02" remote-port="60021" type="ACTIVE" />
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-prv1wac01" local-port="10011" neighbor-name="cib-prodrv01-openlink" remote-host="cib-prodrv01" remote-port="50011" type="ACTIVE" />
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-prv1wac01" local-port="10011" neighbor-name="cib-drrv01-openlink" remote-host="cib-drrv01" remote-port="60011" type="ACTIVE" />
+        <local-network cost="1" name="prv1wac-cltuas-openlink" network=";239.255.254.1" service="27503">
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <import subject="*.endur.&gt;" weight="10" />
+          <import subject="_RVCM.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="*.endur.&gt;" />
+        </local-network>
+      </router>
+      <router maximum-backlog="0" name="prv1wac01-spanklin">
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-prv1wac01" local-port="20012" neighbor-name="prvsbld04-spanklin" remote-host="cib-prvsbld04" remote-port="30042" type="ACTIVE" />
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-prv1wac01" local-port="20012" neighbor-name="prvsbld03-spanklin" remote-host="cib-prvsbld03" remote-port="30032" type="ACTIVE" />
+        <local-network cost="1" name="clt-uas-37504" network=";239.255.254.2" service="37504">
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <import subject="_RVCM.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+        <local-network cost="1" name="clt-uas-37505" network=";239.255.254.2" service="37505">
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <import subject="_RVCM.&gt;" weight="10" />
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+      </router>
+    </rvrd-parameters>
+    <security-parameters>
+      <administrator password="!!!SECRET!!!" username="rvadmin" />
+      <certificate index="1" private-key-password="!!! SECRET !!!">
+        <use for="HTTPS" />
+        <use for="ROUTERS_TO_ROUTERS" />
+        <PEM-data>
+          -----BEGIN CERTIFICATE-----
+          MIIC7TCCAlagAwIBAgIBATANBgkqhkiG9w0BAQQFADB4MQswCQYDVQQGEwJOQTEL
+          MAkGA1UECBMCTkExCzAJBgNVBAcTAk5BMRIwEAYDVQQKEwlBbm9ueW1vdXMxEjAQ
+          BgNVBAsTCUFub255bW91czEnMCUGA1UEAxMeY2liLXBydjF3YWMwMS51c2Eud2Fj
+          aG92aWEubmV0MB4XDTA2MDcxODE5NTgwNloXDTA3MDcxODE5NTgwNloweDELMAkG
+          A1UEBhMCTkExCzAJBgNVBAgTAk5BMQswCQYDVQQHEwJOQTESMBAGA1UEChMJQW5v
+          bnltb3VzMRIwEAYDVQQLEwlBbm9ueW1vdXMxJzAlBgNVBAMTHmNpYi1wcnYxd2Fj
+          MDEudXNhLndhY2hvdmlhLm5ldDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA
+          0YUHQA9DBs/iVUxQxJYmOFaW2w3NVCfza46F78WJKmnyAIJs7fjBU6QxdjkNarKC
+          R6DsjuwMzVjzhMFoAV6BEU8P0QCqbgZiBdLjCFfcOVrcWreqUaMHDkV3bhiTcNS8
+          W9cp4ufS8vMeOV75xnMH5+bkPk4JfWE1uiTwHVJ/CwMCAwEAAaOBhjCBgzARBglg
+          hkgBhvhCAQEEBAMCAkQwCwYDVR0PBAQDAgLsMBMGA1UdJQQMMAoGCCsGAQUFBwMB
+          MB0GA1UdDgQWBBSj35hSMHgmoME/04JmQbHSoA0RPTAfBgNVHSMEGDAWgBSj35hS
+          MHgmoME/04JmQbHSoA0RPTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBAUAA4GB
+          ADnZpV5sDelruxBXgTGP86KKaVc2AWCxkVJ1QGcIkidoO1zuK/i9MlskEDl5PSfB
+          CTFVdo6GUtcHu7mwOZTgYFsLxCtcseyVKtAD8wIQly3wCdOP3kcSg4dcqi/yfl1j
+          GxhseA4nkBvBbtueP/KTo1t+xMH924ToEvkUwzStl+kP
+          -----END CERTIFICATE-----
+          !!! SECRET PRIVATE KEY !!!
+        </PEM-data>
+      </certificate>
+      <certificate index="2" />
+      <certificate index="3" />
+      <certificate index="4" />
+    </security-parameters>
+  </configuration>
+</rendezvous>

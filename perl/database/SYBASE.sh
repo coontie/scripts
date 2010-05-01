@@ -1,0 +1,1 @@
+/home/ig/sybase/32bit/SYBASE.sh

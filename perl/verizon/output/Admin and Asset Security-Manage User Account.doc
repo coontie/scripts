@@ -1,0 +1,29 @@
+Title: Manage User Account
+Actors:
+	DDC System
+	User
+Activities:
+	Activity #1 Submit search parameters 
+	Activity #2 End 
+	Activity #3 Is submission valid? 
+	Activity #4 Search User Account DB 
+	Activity #5 Present "Search Records" menu 
+	Activity #6 Validate user 
+	Activity #7 Validate submission 
+	Activity #8 Persist changes 
+	Activity #9 Validate access 
+	Activity #10 Display results 
+	Activity #11 Log into DDC admin console 
+	Activity #12 Present menu of available choices 
+	Activity #13 Cancel 
+	Activity #14 Choose "Manage User Account" option 
+	Activity #15 Submit updates 
+	Activity #16 Opt to manage a user account 
+	Activity #17 Make changes 
+	Activity #18 Start 
+	Activity #19 Enter search parameters 
+	Activity #20 User wishes to save? 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

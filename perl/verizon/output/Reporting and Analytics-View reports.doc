@@ -1,0 +1,20 @@
+Title: View reports
+Actors:
+	User
+	Reporting Engine
+Activities:
+	Activity #1 Start 
+	Activity #2 Opt to view a report 
+	Activity #3 Search for a report 
+	Activity #4 Generate list of reports matching search criteria 
+	Activity #5 Display reports 
+	Activity #6 Filter required? 
+	Activity #7 Enter filter details 
+	Activity #8 Pick a report 
+	Activity #9 Fetch report 
+	Activity #10 Display report 
+	Activity #11 End 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

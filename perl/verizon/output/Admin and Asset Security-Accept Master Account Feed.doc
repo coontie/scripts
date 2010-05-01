@@ -1,0 +1,21 @@
+Title: Accept Master Account Feed
+Actors:
+	Verizon Customer Master
+	DDC System
+Activities:
+	Activity #1 Send feed to DDC 
+	Activity #2 New customer master has been created 
+	Activity #3 Start 
+	Activity #4 Submission valid? 
+	Activity #5 Notify master account admin 
+	Activity #6 Persist to master user DB 
+	Activity #7 Validate submission 
+	Activity #8 End 
+	Activity #9 Join 
+	Activity #10 Notify users 
+	Activity #11 Notify DDC Ops 
+	Activity #12 Invoke error handling 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

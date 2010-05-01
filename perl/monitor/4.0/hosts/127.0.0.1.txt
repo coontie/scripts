@@ -1,0 +1,5 @@
+062507:183318:oxygen:DISK:/boot:18%
+062507:183318:oxygen:DISK:/:21%
+062507:183318:oxygen:DISK:/dev/shm:0%
+062507:183318:oxygen:MEMORY:Linux:12.33
+062507:183318:oxygen:CPU:0.00

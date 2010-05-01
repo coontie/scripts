@@ -1,0 +1,71 @@
+<config>
+    <server name="cnyp2ps1" component="p2ps">
+      <command type="P2PS_RUNNING" exec="pgrep p2ps > /dev/null; echo $?">
+	<expected_value>0</expected_value>
+      </command>
+      <command type="FEED_STATUS" exec="mon -print SERVICES | grep state | awk '{print $2}'">
+	<expected_value>Up</expected_value>
+      </command>
+      <command type="dacsConnected" exec="mon -print DACS | grep connected | awk '{print $2}'">
+	<expected_value>True</expected_value>
+      </command>
+      <command type="ENOUGH_MOUNTS_AVAILABLE" exec="mon -print | grep availableMount | awk '{if ($2 &lt; 15) print &quot;NO&quot;; else print &quot;YES&quot;}'">
+	<expected_value>YES</expected_value>
+      </command>
+    </server>
+    <server name="cnyp2ps2" component="p2ps">
+      <command type="P2PS_RUNNING" exec="pgrep p2ps > /dev/null; echo $?">
+	<expected_value>0</expected_value>
+      </command>
+      <command type="ENOUGH_MOUNTS_AVAILABLE" exec="mon -print | grep availableMount | awk '{if ($2 &lt; 15) print &quot;NO&quot;; else print &quot;YES&quot;}'">
+	<expected_value>YES</expected_value>
+      </command>
+      <command type="FEED_STATUS" exec="mon -print SERVICES | grep state | awk '{print $2}'">
+	<expected_value>Up</expected_value>
+      </command>
+    </server>
+    <server name="cnjp2ps1" component="p2ps">
+      <command type="P2PS_RUNNING" exec="pgrep p2ps > /dev/null; echo $?">
+	<expected_value>0</expected_value>
+      </command>
+      <command type="ENOUGH_MOUNTS_AVAILABLE" exec="mon -print | grep availableMount | awk '{if ($2 &lt; 15) print &quot;NO&quot;; else print &quot;YES&quot;}'">
+	<expected_value>YES</expected_value>
+      </command>
+      <command type="FEED_STATUS" exec="mon -print SERVICES | grep state | awk '{print $2}'">
+	<expected_value>Up</expected_value>
+      </command>
+    </server>
+    <server name="cnjp2ps2" component="p2ps">
+      <command type="P2PS_RUNNING" exec="pgrep p2ps > /dev/null; echo $?">
+	<expected_value>0</expected_value>
+      </command>
+      <command type="ENOUGH_MOUNTS_AVAILABLE" exec="mon -print | grep availableMount | awk '{if ($2 &lt; 15) print &quot;NO&quot;; else print &quot;YES&quot;}'">
+	<expected_value>YES</expected_value>
+      </command>
+      <command type="FEED_STATUS" exec="mon -print SERVICES | grep state | awk '{print $2}'">
+	<expected_value>Up</expected_value>
+      </command>
+    </server>
+    <server name="nitrogen" component="source">
+      <command type="IS_perl_RUNNING">
+	<exec>pgrep test.pl > /dev/null; echo $?</exec>
+	<expected_value>0</expected_value>
+      </command>
+      <command type="test">
+	<exec>echo 5</exec>
+	<expected_value>DNC</expected_value>
+      </command>
+      <command type="test2">
+	<exec>echo 5</exec>
+	<expected_value>DNC</expected_value>
+      </command>
+    </server>
+    <server name="cnycascade1" component="source">
+      <command type="IS_CASC_SOURCE_RUNNING" exec="pgrep src_dist > /dev/null; echo $?">
+	<expected_value>0</expected_value>
+      </command>
+      <command type="FEED_STATUS" exec="mon -print SERVICES | grep state | awk '{print $2}'">
+	<expected_value>Up</expected_value>
+      </command>
+    </server>
+</config>

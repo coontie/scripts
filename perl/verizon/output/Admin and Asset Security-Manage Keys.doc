@@ -1,0 +1,38 @@
+Title: Manage Keys
+Actors:
+	DDC Ops
+	DDC System
+Activities:
+	Activity #1 Start 
+	Activity #2 Opt to manage keys 
+	Activity #3 Which function to perform? 
+	Activity #4 User chooses to add a key 
+	Activity #5 Set the encryption type 
+	Activity #6 Set the level of encryption 
+	Activity #7 Add the key 
+	Activity #8 Enter metadata 
+	Activity #9 Submit information 
+	Activity #10 Validate submission 
+	Activity #11 Submission valid? 
+	Activity #12 Save  key profile 
+	Activity #13 Activate key profile 
+	Activity #14 Associate key profile with transport profile 
+	Activity #15 End 
+	Activity #16 User chooses to modify a key 
+	Activity #17 Search for key 
+	Activity #18 Generate list of matching keys 
+	Activity #19 Pick a key to modify 
+	Activity #20 Check whether key is currently used in workflow 
+	Activity #21 Key in use? 
+	Activity #22 Notify DDC Ops 
+	Activity #23 Ask user - modify or deactivate? 
+	Activity #24  
+	Activity #25 User picks modify 
+	Activity #26 User picks deactivate 
+	Activity #27 Is key associated with transport profile? 
+	Activity #28  
+	Activity #29 Deactivate key 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

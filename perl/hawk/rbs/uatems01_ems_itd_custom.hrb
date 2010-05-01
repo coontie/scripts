@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ruleBase>
+	<version>4.6.0</version>
+	<name><![CDATA[uatems01_ems_itd_custom]]></name>
+	<schedule></schedule>
+	<author>a446183 on host cib-uatems01(162.111.22.234) at 13:58 Mon, Nov 21, 2005</author>
+	<lastModification>jwbales on host cib-devems01(162.111.22.248) at 14:37 Wed, Aug 16, 2006</lastModification>
+	<comment><![CDATA[]]></comment>
+	<rule>
+		<name><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://cib-uatemsmessaging01.usa.wachovia.net:7222,tcp://cib-uatemsmessaging02.usa.wachovia.net:7224:getQueues(queueRegExp=uat.wachovia.CIB.iTD.tradesphere.domain.request):60]]></name>
+		<schedule></schedule>
+		<overRuling>0</overRuling>
+		<dataSource>
+			<microAgentName><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://cib-uatemsmessaging01.usa.wachovia.net:7222,tcp://cib-uatemsmessaging02.usa.wachovia.net:7224]]></microAgentName>
+			<methodName>getQueues</methodName>
+			<dataElement name="queueRegExp">
+				<dataObject class="java.lang.String" ><![CDATA[uat.wachovia.CIB.iTD.tradesphere.domain.request]]></dataObject>
+			</dataElement>
+			<interval>60000</interval>
+		</dataSource>
+		<test>
+			<name><![CDATA[(pendingMessageCount >= 15)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThanOrEqualTo" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="15" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[postCondition(conditionName=${Posted.RED_ALERT})]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>postCondition</methodName>
+				<dataElement name="condition">
+					<dataObject class="COM.TIBCO.hawk.config.rbengine.rulebase.util.PostedCondition" ><![CDATA[RED_ALERT]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<consequenceAction>
+				<name><![CDATA[sendAlertMedium(alertMsg=${Internal.Agent Name} queue ${name} is not moving.)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendAlertMessage</methodName>
+				<dataElement name="message">
+					<dataObject class="COM.TIBCO.hawk.config.rbengine.rulebase.util.AlertMedium" ><![CDATA[${Internal.Agent Name} queue ${name} is not moving.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=${Internal.Agent Name} queue ${name} has ${pendingMessageCount}  messages pending to be consumed which is more than the current threshold of 15., From=HawkAgent@hawk-mgmt, Mail Server=smtp.wachovia.net, Subject=${Internal.Agent Name} queue ${name} is not moving., To=daryl.sutton@wachovia.com,mark.evans@wachovia.com,babak.keradman@wachovia.com,bruce.thofson1@wachovia.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[daryl.sutton@wachovia.com,mark.evans@wachovia.com,babak.keradman@wachovia.com,bruce.thofson1@wachovia.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@hawk-mgmt]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[${Internal.Agent Name} queue ${name} is not moving.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[${Internal.Agent Name} queue ${name} has ${pendingMessageCount}  messages pending to be consumed which is more than the current threshold of 15.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount InRange 10 15)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.InRange" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="10" />
+				<dataObject class="java.lang.Long"  value="15" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=${Internal.Agent Name} queue ${name} has ${pendingMessageCount} messages pending., From=HawkAgent@hawk-mgmt, Mail Server=smtp.wachovia.net, Subject=WARNING: ${Internal.Agent Name} queue ${name} is being consumed slowly., To=daryl.sutton@wachovia.com,mark.evans@wachovia.com,babak.keradman@wachovia.com,bruce.thofson1@wachovia.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[daryl.sutton@wachovia.com,mark.evans@wachovia.com,babak.keradman@wachovia.com,bruce.thofson1@wachovia.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@hawk-mgmt]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[WARNING: ${Internal.Agent Name} queue ${name} is being consumed slowly.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[${Internal.Agent Name} queue ${name} has ${pendingMessageCount} messages pending.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<consequenceAction>
+				<name><![CDATA[sendAlertLow(alertMsg=${Internal.Agent Name} queue ${name} has ${pendingMessageCount} messages pending.)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendAlertMessage</methodName>
+				<dataElement name="message">
+					<dataObject class="COM.TIBCO.hawk.config.rbengine.rulebase.util.AlertLow" ><![CDATA[${Internal.Agent Name} queue ${name} has ${pendingMessageCount} messages pending.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount < 10)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.LessThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="10" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=${Internal.Agent Name} queue ${name} is being consumed normally., From=HawkAgent@hawk-mgmt, Mail Server=smtp.wachovia.net, Subject=INFO: ${Internal.Agent Name} queue ${name} is normal., To=daryl.sutton@wachovia.com,mark.evans@wachovia.com,babak.keradman@wachovia.com,bruce.thofson1@wachovia.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[daryl.sutton@wachovia.com,mark.evans@wachovia.com,babak.keradman@wachovia.com,bruce.thofson1@wachovia.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@hawk-mgmt]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[INFO: ${Internal.Agent Name} queue ${name} is normal.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[${Internal.Agent Name} queue ${name} is being consumed normally.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+	</rule>
+	<rule>
+		<name><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://cib-uatemsmessaging01.usa.wachovia.net:7222,tcp://cib-uatemsmessaging02.usa.wachovia.net:7224:getQueues(queueRegExp=uat.wachovia.CIB.iTD.tradesphere.top.request):60]]></name>
+		<schedule></schedule>
+		<overRuling>0</overRuling>
+		<dataSource>
+			<microAgentName><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://cib-uatemsmessaging01.usa.wachovia.net:7222,tcp://cib-uatemsmessaging02.usa.wachovia.net:7224]]></microAgentName>
+			<methodName>getQueues</methodName>
+			<dataElement name="queueRegExp">
+				<dataObject class="java.lang.String" ><![CDATA[uat.wachovia.CIB.iTD.tradesphere.top.request]]></dataObject>
+			</dataElement>
+			<interval>60000</interval>
+		</dataSource>
+		<test>
+			<name><![CDATA[(pendingMessageCount >= 15)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThanOrEqualTo" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="15" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[postCondition(conditionName=${Posted.RED_ALERT})]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>postCondition</methodName>
+				<dataElement name="condition">
+					<dataObject class="COM.TIBCO.hawk.config.rbengine.rulebase.util.PostedCondition" ><![CDATA[RED_ALERT]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<consequenceAction>
+				<name><![CDATA[sendAlertHigh(alertMsg=${Internal.Agent Name} queue ${name} is not moving.)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendAlertMessage</methodName>
+				<dataElement name="message">
+					<dataObject class="COM.TIBCO.hawk.config.rbengine.rulebase.util.AlertHigh" ><![CDATA[${Internal.Agent Name} queue ${name} is not moving.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=${Internal.Agent Name} queue ${name} has ${pendingMessageCount} messages pending to be consumed which is more than the current threshold of 15., From=HawkAgent@hawk-mgmt, Mail Server=smtp.wachovia.net, Subject=${Internal.Agent Name} queue ${name} is not moving., To=daryl.sutton@wachovia.com,mark.evans@wachovia.com,babak.keradman@wachovia.com,bruce.thofson1@wachovia.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[daryl.sutton@wachovia.com,mark.evans@wachovia.com,babak.keradman@wachovia.com,bruce.thofson1@wachovia.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@hawk-mgmt]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[${Internal.Agent Name} queue ${name} is not moving.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[${Internal.Agent Name} queue ${name} has ${pendingMessageCount} messages pending to be consumed which is more than the current threshold of 15.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount InRange 10 15)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.InRange" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="10" />
+				<dataObject class="java.lang.Long"  value="15" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=${Internal.Agent Name} queue ${name} has ${pendingMessageCount} messages pending., From=HawkAgent@hawk-mgmt, Mail Server=smtp.wachovia.net, Subject=WARNING: ${Internal.Agent Name} queue ${name} is being consumed slowly., To=daryl.sutton@wachovia.com,mark.evans@wachovia.com,babak.keradman@wachovia.com,bruce.thofson1@wachovia.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[daryl.sutton@wachovia.com,mark.evans@wachovia.com,babak.keradman@wachovia.com,bruce.thofson1@wachovia.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@hawk-mgmt]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[WARNING: ${Internal.Agent Name} queue ${name} is being consumed slowly.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[${Internal.Agent Name} queue ${name} has ${pendingMessageCount} messages pending.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<consequenceAction>
+				<name><![CDATA[sendAlertMedium(alertMsg=${Internal.Agent Name} queue ${name} has ${pendingMessageCount} messages pending.)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendAlertMessage</methodName>
+				<dataElement name="message">
+					<dataObject class="COM.TIBCO.hawk.config.rbengine.rulebase.util.AlertMedium" ><![CDATA[${Internal.Agent Name} queue ${name} has ${pendingMessageCount} messages pending.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(pendingMessageCount < 10)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.LessThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[pendingMessageCount]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Long"  value="10" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=${Internal.Agent Name} queue ${name} is being consumed normally., From=HawkAgent@hawk-mgmt, Mail Server=smtp.wachovia.net, Subject=INFO: ${Internal.Agent Name} queue ${name} is normal., To=daryl.sutton@wachovia.com,mark.evans@wachovia.com,babak.keradman@wachovia.com,bruce.thofson1@wachovia.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[daryl.sutton@wachovia.com,mark.evans@wachovia.com,babak.keradman@wachovia.com,bruce.thofson1@wachovia.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@hawk-mgmt]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[INFO: ${Internal.Agent Name} queue ${name} is normal.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[${Internal.Agent Name} queue ${name} is being consumed normally.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+	</rule>
+</ruleBase>

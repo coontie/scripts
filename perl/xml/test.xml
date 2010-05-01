@@ -1,0 +1,21 @@
+<config>
+    <server name="cnyp2ps1" component="p2ps">
+		<command type="P2PS_RUNNING">
+			<exec>pgrep p2ps > /dev/null; echo $?</exec>
+			<expected_value>0</expected_value>
+			<message>the p2ps is not running</message>
+		</command>
+    </server>
+	<server name="nitrogen.composers.caxton.com" component="source">
+		<command type="IS perl RUNNING">
+			<exec>pgrep test.pl > /dev/null; echo $?</exec>
+			<expected_value>0</expected_value>
+			<message>the perl is not running</message>
+		</command>
+		<command type="to see if echo is 4 or not">
+			<exec>echo 5</exec>
+			<expected_value>3</expected_value>
+			<message>the echo 5 reported 5 not 4</message>
+		</command>
+	</server>
+</config>

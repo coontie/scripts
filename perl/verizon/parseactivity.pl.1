@@ -1,0 +1,27 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+use XML::Parser;
+use XML::SimpleObject;
+
+my $modelFile = $ARGV[0];
+
+my $parser = XML::Parser->new(ErrorContext => 2, Style => "Tree");
+
+my $xmlobj = XML::SimpleObject->new( $parser->parsefile($modelFile) ) || die "file not found";
+
+	foreach my $model ($xmlobj->child("xmi:XMI")->children("uml:Model")) {
+		my $modelName = $model->attribute('name');
+		print "current model is $modelName \n";
+		foreach my $pkgElement ($model->children("packagedElement")) {
+			my $pkgElementName = $pkgElement->attribute('name');
+			#only get those that match uml:Activity type
+			print "current package is $pkgElementName \n" if ($pkgElement->attribute('xmi:type') eq 'uml:Activity');
+			foreach my $node ($pkgElement->children('node') ) {
+#				my $nodeName = $node->attribute('name');
+#				my $nodeType = $node->attribute('xmi:type');
+#				print "\t type $nodeType node name is $nodeName \n";
+			}
+		}
+	}

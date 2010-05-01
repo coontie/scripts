@@ -1,0 +1,34 @@
+Title: Package SKUs
+Actors:
+	DDC
+Activities:
+	Activity #1 Start 
+	Activity #2 Receive distribution profile 
+	Activity #3 Notify workflow 
+	Activity #4 Fetch distribution profile 
+	Activity #5 Fetch data map 
+	Activity #6 Generate Distribution Partner metadata 
+	Activity #7 Create package 
+	Activity #8 Add SKUs to package 
+	Activity #9 Add metadata files to package 
+	Activity #10 Check manifest requirements 
+	Activity #11 Manifest required? 
+	Activity #12 Create manifest 
+	Activity #13 Add manifest to package 
+	Activity #14 Close package 
+	Activity #15 End 
+	Activity #16 Verify SKUs available 
+	Activity #17 SKUs available? 
+	Activity #18 More SKUs to package? 
+	Activity #19 Digital forensics required? 
+	Activity #20 Add digital forensics 
+	Activity #21 Check watermark requirements 
+	Activity #22 Watermarks required? 
+	Activity #23 Add watermarks 
+	Activity #24 Fetch distribution partner's encryption key 
+	Activity #25 Encryption required? 
+	Activity #26 Encrypt package 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

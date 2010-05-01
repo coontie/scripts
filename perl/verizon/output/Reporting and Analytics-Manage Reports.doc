@@ -1,0 +1,36 @@
+Title: Manage Reports
+Actors:
+	User
+	Reporting Engine
+Activities:
+	Activity #1 Start 
+	Activity #2 Opt to manage reports 
+	Activity #3 What does the user want to do? 
+	Activity #4 Opt to enter report schedule 
+	Activity #5 Opt to enter date ranges 
+	Activity #6 Opt to enter new expiry schedule 
+	Activity #7 Opt to delete report template 
+	Activity #8 Opt to delete report results 
+	Activity #9 Pick report results 
+	Activity #10 Delete report results 
+	Activity #11 End 
+	Activity #12 Display list of reports 
+	Activity #13 Enter new schedule 
+	Activity #14 Submit schedule 
+	Activity #15 Enter new ranges 
+	Activity #16 Submit new ranges 
+	Activity #17 Create list of reports 
+	Activity #18 Search for a report 
+	Activity #19 Search for report results 
+	Activity #20 Create a list of results 
+	Activity #21 Display results 
+	Activity #22 Search for template 
+	Activity #23 Schedule or ranges? 
+	Activity #24 Create list of templates 
+	Activity #25 Display list of templates 
+	Activity #26 Pick template 
+	Activity #27 Delete template 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

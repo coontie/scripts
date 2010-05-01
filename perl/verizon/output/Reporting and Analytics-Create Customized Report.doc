@@ -1,0 +1,24 @@
+Title: Create Customized Report
+Actors:
+	User
+	Reporting Engine
+Activities:
+	Activity #1 Start 
+	Activity #2 Opt to create a custom report 
+	Activity #3 Generate a list of templates 
+	Activity #4 Display templates 
+	Activity #5 Pick a template to customize 
+	Activity #6 Change data categories 
+	Activity #7 Update format? 
+	Activity #8 Enter new format 
+	Activity #9 Check whether data representation needs change 
+	Activity #10 Data representation needs change? 
+	Activity #11 Change data representation 
+	Activity #12 Save data? 
+	Activity #13 Save data 
+	Activity #14 End 
+	Activity #15 Ask whether user wants to save 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

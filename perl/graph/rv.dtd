@@ -1,0 +1,167 @@
+<!ELEMENT rendezvous ( state?, configuration? ) >
+<!ATTLIST rendezvous url CDATA #IMPLIED >
+
+<!ELEMENT state ( rvd? | rvrd? | secure-daemon? | security? | rvcache? | rva? ) >
+<!ELEMENT rvd EMPTY >
+<!ELEMENT rvrd EMPTY >
+<!ELEMENT secure-daemon EMPTY >
+<!ELEMENT security EMPTY >
+<!ELEMENT rvcache EMPTY >
+<!ELEMENT rva EMPTY >
+<!ATTLIST state timestamp NMTOKEN #IMPLIED >
+
+<!ENTITY % rvsrd-block "( ( secure-daemon-parameters ) | ( rvrd-parameters, secure-daemon-parameters? ) | ( secure-daemon-parameters?, rvrd-parameters ) )" >
+<!ENTITY % parameters-block "( %rvsrd-block; | rva-parameters | rvcache-parameters )" >
+
+<!ELEMENT configuration ( ( %parameters-block;, security-parameters ) |  ( security-parameters, %parameters-block; ) ) >
+<!ATTLIST configuration timestamp CDATA #IMPLIED >
+
+<!-- Security elements -->
+<!ELEMENT security-parameters ( certificate*, administrator?, certificate* ) >
+
+<!ELEMENT administrator EMPTY >
+<!ATTLIST administrator username NMTOKENS #REQUIRED >
+<!ATTLIST administrator password CDATA #REQUIRED >
+
+<!-- Rvrd elements -->
+
+<!ELEMENT rvrd-parameters ((logging, (router* | border-router?)) | ((router, logging?, router*) | (border-router, logging?)))? > 
+<!ELEMENT logging EMPTY >
+<!ATTLIST logging connections (yes|no) #IMPLIED >
+<!ATTLIST logging subject-interest (yes|no) #IMPLIED >
+<!ATTLIST logging subject-data (yes|no) #IMPLIED >
+
+<!ENTITY % router-block "( neighbor | local-network )*">
+
+<!ELEMENT router ( %router-block; ) >
+<!ATTLIST router name NMTOKEN #REQUIRED >
+<!ATTLIST router maximum-backlog NMTOKEN #IMPLIED >
+
+<!ENTITY % border-router-block "(neighbor | local-network | policy)*">
+
+<!ELEMENT border-router (%border-router-block;)>
+<!ATTLIST border-router name NMTOKEN #REQUIRED >
+<!ATTLIST border-router maximum-backlog NMTOKEN #IMPLIED >
+
+<!ELEMENT policy (subject+) >
+<!ATTLIST policy from CDATA #REQUIRED >
+<!ATTLIST policy to CDATA #REQUIRED >
+
+<!ELEMENT subject EMPTY>
+<!ATTLIST subject name CDATA  #REQUIRED >
+<!ATTLIST subject first-border ( yes | no ) #IMPLIED >
+
+
+<!ENTITY % local-network-block "( import | export )*">
+
+<!ELEMENT local-network ( %local-network-block; ) >
+<!ATTLIST local-network name CDATA #REQUIRED >
+<!ATTLIST local-network network CDATA #IMPLIED >
+<!ATTLIST local-network service NMTOKEN #IMPLIED >
+<!ATTLIST local-network cost NMTOKEN #IMPLIED >
+
+<!ELEMENT import EMPTY >
+<!ATTLIST import subject CDATA #REQUIRED >
+<!ATTLIST import weight NMTOKEN #IMPLIED >
+
+<!ELEMENT export EMPTY >
+<!ATTLIST export subject CDATA #REQUIRED >
+
+<!ELEMENT neighbor ( certificate? ) >
+<!ATTLIST neighbor type (ACCEPT-ANY|ACTIVE|PASSIVE|SEEK-ANY) #REQUIRED >
+<!ATTLIST neighbor local-host CDATA #IMPLIED >
+<!ATTLIST neighbor local-port NMTOKEN #IMPLIED >
+<!ATTLIST neighbor neighbor-name NMTOKEN #IMPLIED >
+<!ATTLIST neighbor remote-host NMTOKEN #IMPLIED >
+<!ATTLIST neighbor remote-port NMTOKEN #IMPLIED >
+<!ATTLIST neighbor cost NMTOKEN #IMPLIED >
+<!ATTLIST neighbor compressed (yes|no) #IMPLIED >
+<!ATTLIST neighbor encrypted (yes|no) #IMPLIED >
+
+
+<!-- Security and secure daemon elements -->
+
+<!ENTITY % secure-daemon-parameters "( user | network-service-pair | subject-authorization )*">
+
+<!ELEMENT secure-daemon-parameters ( %secure-daemon-parameters; ) >
+<!ELEMENT certificate ( use*, PEM-data?, use* ) >
+<!ATTLIST certificate assignment-date CDATA #IMPLIED >
+<!ATTLIST certificate id NMTOKEN #IMPLIED >
+<!ATTLIST certificate index NMTOKEN #IMPLIED >
+<!ATTLIST certificate issuer CDATA #IMPLIED >
+<!ATTLIST certificate original-file CDATA #IMPLIED >
+<!ATTLIST certificate pathname CDATA #IMPLIED >
+<!ATTLIST certificate private-key-password CDATA #IMPLIED >
+<!ATTLIST certificate public-key-engine NMTOKEN #IMPLIED >
+<!ATTLIST certificate serial-number NMTOKEN #IMPLIED >
+<!ATTLIST certificate subject CDATA #IMPLIED >
+<!ATTLIST certificate valid-not-after CDATA #IMPLIED >
+<!ATTLIST certificate valid-not-before CDATA #IMPLIED >
+<!ATTLIST certificate version NMTOKEN #IMPLIED >
+
+<!ELEMENT use EMPTY >
+<!ATTLIST use for (HTTPS|ROUTERS_TO_ROUTERS|DAEMON_TO_CLIENTS) #REQUIRED >
+
+<!ELEMENT PEM-data ( #PCDATA ) >
+
+<!ELEMENT network-service-pair EMPTY >
+<!ATTLIST network-service-pair default (yes|no) #IMPLIED >
+<!ATTLIST network-service-pair network-specification CDATA #IMPLIED >
+<!ATTLIST network-service-pair service-port CDATA #IMPLIED >
+
+<!ELEMENT subject-authorization EMPTY >
+<!ATTLIST subject-authorization publish (yes|no) #REQUIRED >
+<!ATTLIST subject-authorization subject CDATA #REQUIRED >
+<!ATTLIST subject-authorization subscribe (yes|no) #REQUIRED >
+
+<!ELEMENT user ( certificate* ) >
+<!ATTLIST user password CDATA #IMPLIED >
+<!ATTLIST user username CDATA #REQUIRED >
+
+
+<!-- Rvcache elements -->
+
+<!ENTITY % rvcache-parameters-block "( ( connection-parameters?, fault-tolerance? ) | ( fault-tolerance?, connection-parameters? ) )" >
+
+<!ELEMENT rvcache-parameters ( last-value-cache*, %rvcache-parameters-block;, last-value-cache* ) >
+<!ATTLIST rvcache-parameters in-state (running|idle) #REQUIRED >
+<!ATTLIST rvcache-parameters out-state (running|idle) #REQUIRED >
+
+<!ELEMENT fault-tolerance EMPTY >
+<!ATTLIST fault-tolerance activation NMTOKEN #IMPLIED >
+<!ATTLIST fault-tolerance group CDATA #IMPLIED >
+<!ATTLIST fault-tolerance heartbeat NMTOKEN #IMPLIED >
+<!ATTLIST fault-tolerance network CDATA #IMPLIED >
+<!ATTLIST fault-tolerance service NMTOKEN #IMPLIED >
+<!ATTLIST fault-tolerance weight NMTOKEN #IMPLIED >
+
+<!ELEMENT last-value-cache EMPTY >
+<!ATTLIST last-value-cache mode (merge|replace) #REQUIRED >
+<!ATTLIST last-value-cache subject CDATA #REQUIRED >
+
+<!-- Rva elements -->
+
+<!ENTITY % import-export-block "( import | export )*" >
+<!ENTITY % rva-parameters-block "( ( connection-parameters?, %import-export-block;, HTTP-tunnel? ) | ( HTTP-tunnel?, %import-export-block;, connection-parameters? ) )" >
+
+<!ELEMENT rva-parameters ( %import-export-block;,  %rva-parameters-block;, %import-export-block;) >
+<!ATTLIST rva-parameters in-state (running|idle) #REQUIRED >
+<!ATTLIST rva-parameters out-state (running|idle) #REQUIRED >
+
+<!ELEMENT HTTP-tunnel EMPTY >
+<!ATTLIST HTTP-tunnel enabled (yes|no) #IMPLIED >
+<!ATTLIST HTTP-tunnel active-flush NMTOKEN #IMPLIED >
+<!ATTLIST HTTP-tunnel client-timeout NMTOKEN #IMPLIED >
+<!ATTLIST HTTP-tunnel inactive-flush NMTOKEN #IMPLIED >
+<!ATTLIST HTTP-tunnel max-client-queue NMTOKEN #IMPLIED >
+<!ATTLIST HTTP-tunnel max-proxy-buffer NMTOKEN #IMPLIED >
+<!ATTLIST HTTP-tunnel max-queue-size NMTOKEN #IMPLIED >
+<!ATTLIST HTTP-tunnel ping-interval NMTOKEN #IMPLIED >
+<!ATTLIST HTTP-tunnel request-flush NMTOKEN #IMPLIED >
+<!ATTLIST HTTP-tunnel tunnel-port NMTOKEN #IMPLIED >
+
+<!ELEMENT connection-parameters EMPTY >
+<!ATTLIST connection-parameters daemon NMTOKEN #IMPLIED >
+<!ATTLIST connection-parameters listen-port NMTOKEN #IMPLIED >
+<!ATTLIST connection-parameters network CDATA #IMPLIED >
+<!ATTLIST connection-parameters service NMTOKEN #IMPLIED >

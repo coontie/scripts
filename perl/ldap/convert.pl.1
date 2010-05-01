@@ -1,0 +1,36 @@
+#!/usr/bin/perl -w
+
+use strict;
+use Getopt::Std;
+my %options;
+getopts('f:', \%options);
+
+usage("Missing file name") unless $options{'f'};
+
+my $importFile = $options{'f'};
+
+open (IMPORT, "<$importFile") or die "file $importFile not found";
+
+my ($uid, $gid, $unix_name, $given_name, $login_shell, $home_dir, $hosts_allowed);
+
+my $skipFlag;
+
+while (<IMPORT>)
+{
+		($uid, $gid, $unix_name, $given_name, $login_shell, $home_dir, $hosts_allowed) = split (':', $_);
+		print $uid, $gid, $unix_name, $given_name, $login_shell, $home_dir, $hosts_allowed;
+}
+
+close (IMPORT);
+
+sub usage {
+    print "\n!! ",@_," !!\n";
+    print <<USAGE;
+
+Usage $0 -f colon_separated_file.txt
+
+Example: $0 -f foo.txt
+
+USAGE
+    exit 1;
+}

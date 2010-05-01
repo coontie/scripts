@@ -1,0 +1,31 @@
+Title: Manage Distribution Profile
+Actors:
+	Master Account Administrator
+	DDC System
+	DDC Ops User
+Activities:
+	Activity #1  
+	Activity #2 User opts to manage an existing Distribution Profile 
+	Activity #3 Display Distribution Profile Search Screen 
+	Activity #4 Enter Search Parameters 
+	Activity #5 Search Distribution Profiles 
+	Activity #6 Search Yielded Results ? 
+	Activity #7 Display Search Results 
+	Activity #8 Select Distribution Profile 
+	Activity #9 Deactivate Distribution Profile ? 
+	Activity #10 Delete the Distribution Profile 
+	Activity #11 Update Profile Name and Description 
+	Activity #12 Update additional Schema fields ? 
+	Activity #13 END 
+	Activity #14 Update inbound,outbound file locations and data map specifications 
+	Activity #15 Request Update Additional Schema Fields 
+	Activity #16 Approve Update Schema Fields 
+	Activity #17 Update Schema Fields 
+	Activity #18 Save Profile 
+	Activity #19 Save as New Profile ? 
+	Activity #20 Save as a New Distribution Profile 
+	Activity #21 Save Changes to Existing Profile 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

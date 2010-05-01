@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rendezvous SYSTEM "http://www.rv.tibco.com/dtd/rv">
+<rendezvous url="http://cib-urvsbld04.usa.wachovia.net:27580">
+  <configuration timestamp="20061207124111-0500">
+    <rvrd-parameters>
+      <logging connections="no" subject-data="no" subject-interest="no" />
+      <router maximum-backlog="0" name="urvsbld04-spanklin">
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-urvsbld04" local-port="30042" neighbor-name="urv1wac02-spanklin" remote-host="cib-urv1wac02" remote-port="20022" type="ACTIVE" />
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-urvsbld04" local-port="30042" neighbor-name="urv1wac01-spanklin" remote-host="cib-urv1wac01" remote-port="20012" type="ACTIVE" />
+        <local-network cost="1" name="ny-uas-17505" network=";239.255.254.2" service="17505">
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <import subject="_RVCM.&gt;" weight="10" />
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+        <local-network cost="1" name="ny-uas-27508" network=";239.255.254.2" service="27508">
+          <import subject="_RVCM.&gt;" weight="10" />
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+        <local-network cost="1" name="ny-uas-17509" network=";239.255.254.2" service="17509">
+          <import subject="_RVCM.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+        <local-network cost="1" name="ny-uas-17506" network=";239.255.254.2" service="17506">
+          <import subject="_RVFT.&gt;" weight="10" />
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <import subject="_RVCM.&gt;" weight="10" />
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+        <local-network cost="1" name="ny-uas-27507" network=";239.255.254.2" service="27507">
+          <import subject="_RVCM.&gt;" weight="10" />
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+        <local-network cost="1" name="ny-uas-17508" network=";239.255.254.2" service="17508">
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <import subject="_RVCM.&gt;" weight="10" />
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+        <local-network cost="1" name="ny-uas-27506" network=";239.255.254.2" service="27506">
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <import subject="_RVCM.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+        <local-network cost="1" name="ny-uas-17513" network=";239.255.254.2" service="17513">
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <import subject="_RVCM.&gt;" weight="10" />
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+        <local-network cost="1" name="ny-uas-27505" network=";239.255.254.2" service="27505">
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <import subject="_RVCM.&gt;" weight="10" />
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+        <local-network cost="1" name="ny-uas-17510" network=";239.255.254.2" service="17510">
+          <import subject="_RVFT.&gt;" weight="10" />
+          <import subject="_RVCM.&gt;" weight="10" />
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+        <local-network cost="1" name="ny-uas-27504" network=";239.255.254.2" service="27504">
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <import subject="_RVCM.&gt;" weight="10" />
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+        <local-network cost="1" name="ny-uas-17504" network=";239.255.254.2" service="17504">
+          <import subject="_RVCM.&gt;" weight="10" />
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+        <local-network cost="1" name="ny-uas-17511" network=";239.255.254.2" service="17511">
+          <import subject="_RVCM.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+        <local-network cost="1" name="ny-uas-17512" network=";239.255.254.2" service="17512">
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <import subject="_RVCM.&gt;" weight="10" />
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+        <local-network cost="1" name="ny-uas-17507" network=";239.255.254.2" service="17507">
+          <import subject="_RVFT.&gt;" weight="10" />
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <import subject="_RVCM.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+      </router>
+    </rvrd-parameters>
+    <security-parameters>
+      <administrator password="!!!SECRET!!!" username="rvadmin" />
+      <certificate index="1" private-key-password="!!! SECRET !!!">
+        <use for="HTTPS" />
+        <use for="ROUTERS_TO_ROUTERS" />
+        <PEM-data>
+          -----BEGIN CERTIFICATE-----
+          MIIC7TCCAlagAwIBAgIBATANBgkqhkiG9w0BAQQFADB4MQswCQYDVQQGEwJOQTEL
+          MAkGA1UECBMCTkExCzAJBgNVBAcTAk5BMRIwEAYDVQQKEwlBbm9ueW1vdXMxEjAQ
+          BgNVBAsTCUFub255bW91czEnMCUGA1UEAxMeY2liLXVydnNibGQwNC51c2Eud2Fj
+          aG92aWEubmV0MB4XDTA2MDcxODIwMjIyOVoXDTA3MDcxODIwMjIyOVoweDELMAkG
+          A1UEBhMCTkExCzAJBgNVBAgTAk5BMQswCQYDVQQHEwJOQTESMBAGA1UEChMJQW5v
+          bnltb3VzMRIwEAYDVQQLEwlBbm9ueW1vdXMxJzAlBgNVBAMTHmNpYi11cnZzYmxk
+          MDQudXNhLndhY2hvdmlhLm5ldDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA
+          z2TQCfNoG0QtoM+/wuFc5NZ4pGRs/QkXF85RTAAeGKJl+RZqzx6pyo40paOsDadl
+          bftDmAu3xUw7W/8SDb8ooir8jml9ZkUTTveDLG3NEBDA1HSQoASN/Q5a6FgbwW7s
+          17g8dWgqsLDIaX4r0nLOAM5wEV2ckLTIs0a75cxmhUMCAwEAAaOBhjCBgzARBglg
+          hkgBhvhCAQEEBAMCAkQwCwYDVR0PBAQDAgLsMBMGA1UdJQQMMAoGCCsGAQUFBwMB
+          MB0GA1UdDgQWBBQKwnFgXPc9sjrgrrO1l1PE736f0TAfBgNVHSMEGDAWgBQKwnFg
+          XPc9sjrgrrO1l1PE736f0TAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBAUAA4GB
+          ALXPL+IlIjmWbcRtiteF3gdfOZbFbJOpqKP7IQ6jcdmPqkzliu72+xL86JarrQSb
+          sXllaeYRsEhKLYJAF8YqBNwnn7TKFEma3ijFJvKdCvBArWifabQLOeHkhONrOGg9
+          xQJFSkEAdoHOB7/wfXWFKHryB+NlP5ZYxegGuJ0uRXR0
+          -----END CERTIFICATE-----
+          !!! SECRET PRIVATE KEY !!!
+        </PEM-data>
+      </certificate>
+      <certificate index="2" />
+      <certificate index="3" />
+      <certificate index="4" />
+    </security-parameters>
+  </configuration>
+</rendezvous>

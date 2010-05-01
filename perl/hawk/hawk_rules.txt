@@ -1,0 +1,307 @@
+RULE NAME://cib-devemsmessaging05.usa.wachovia.net:7232 
+TEST: (running isFalse )
+RULE NAME://cib-devemsmessaging05.usa.wachovia.net:7234 
+TEST: (running isFalse )
+RULE NAME://cib-devemsmessaging05.usa.wachovia.net:7236 
+TEST: (running isFalse )
+RULE NAME://cib-devemsmessaging05.usa.wachovia.net:7238 
+TEST: (running isFalse )
+RULE NAME://cib-devemsmessaging05.usa.wachovia.net:7232 
+TEST: ((numConnects >= 800) AND (numConnects <= 900))
+TEST: (numConnects > 900)
+RULE NAME://cib-devemsmessaging05.usa.wachovia.net:7234 
+TEST: ((numConnects >= 800) AND (numConnects <= 900))
+TEST: (numConnects > 900)
+RULE NAME://cib-devemsmessaging05.usa.wachovia.net:7236 
+TEST: ((numConnects >= 800) AND (numConnects <= 900))
+TEST: (numConnects > 900)
+RULE NAME://cib-devemsmessaging05.usa.wachovia.net:7238 
+TEST: ((numConnects >= 800) AND (numConnects <= 900))
+TEST: (numConnects > 900)
+RULE NAME://localhost:7222 
+TEST: (pendingMessageCount >= 15)
+TEST: (pendingMessageCount InRange 10 15)
+TEST: (pendingMessageCount < 10)
+RULE NAME://localhost:7222 
+TEST: (pendingMessageCount >= 15)
+TEST: (pendingMessageCount InRange 10 15)
+TEST: (pendingMessageCount < 10)
+RULE NAME://localhost:7222 
+TEST: (pendingMessageCount >= 15)
+TEST: (pendingMessageCount InRange 10 15)
+TEST: (pendingMessageCount < 10)
+RULE NAME://localhost:7222 
+TEST: (pendingMessageCount >= 15)
+TEST: (pendingMessageCount InRange 10 15)
+TEST: (pendingMessageCount < 10)
+RULE NAME://cib-dremsmessaging05.usa.wachovia.net:7222 
+TEST: (running isFalse )
+RULE NAME://cib-dremsmessaging05.usa.wachovia.net:7224 
+TEST: (running isFalse )
+RULE NAME://cib-dremsmessaging05.usa.wachovia.net:7222 
+TEST: ((numConnects >= 700) AND (numConnects <= 900))
+TEST: (numConnects > 900)
+RULE NAME://cib-dremsmessaging05.usa.wachovia.net:7224 
+TEST: ((numConnects >= 700) AND (numConnects <= 900))
+TEST: (numConnects > 900)
+RULE NAME://cib-dremsmessaging05.usa.wachovia.net:7222 
+TEST: (userName Equals sec20ibprod)
+RULE NAME://cib-dremsmessaging06.usa.wachovia.net:7222 
+TEST: (running isFalse )
+RULE NAME://cib-dremsmessaging06.usa.wachovia.net:7224 
+TEST: (running isFalse )
+RULE NAME://cib-dremsmessaging06.usa.wachovia.net:7222 
+TEST: ((numConnects >= 700) AND (numConnects <= 900))
+TEST: (numConnects > 900)
+RULE NAME://cib-dremsmessaging06.usa.wachovia.net:7224 
+TEST: ((numConnects >= 700) AND (numConnects <= 900))
+TEST: (numConnects > 900)
+RULE NAME://cib-dremsmessaging06.usa.wachovia.net:7222 
+TEST: (userName Equals sec20ibprod)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 15)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 2)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 5)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 2)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (receiverCount != 1)
+TEST: (pendingMessageCount > 50)
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:7222 
+TEST: (pendingMessageCount > 100)
+RULE NAME://localhost:8222 
+TEST: (running isFalse )
+TEST: (running isTrue )
+RULE NAME://localhost:8222 
+TEST: (pendingMessageSize > 2000000000)
+RULE NAME://localhost:8222 
+TEST: (numConnects > 3000)
+RULE NAME://localhost:7222 
+TEST: (running isFalse )
+TEST: (running isTrue )
+RULE NAME://localhost:7222 
+TEST: (pendingMessageSize > 2000000000)
+RULE NAME://localhost:7222 
+TEST: (numConnects > 3000)
+RULE NAME://localhost:7222 
+TEST: (pendingMessageSize > 2000000000)
+RULE NAME://localhost:7224 
+TEST: (running isFalse )
+TEST: (running isTrue )
+RULE NAME:onAgentExpired(Agent Name=cib-devems01|cib-devems02|cib-devems03|cib-devems04|cib-devems05): 
+TEST: (Hawk Domain Equals HawkMon)
+RULE NAME:onAgentAlive(Agent Name=cib-devems01|cib-devems02|cib-devems03|cib-devems04|cib-devems05): 
+TEST: (Hawk Domain Contains HawkMon)
+RULE NAME:onAgentExpired(Agent Name=cib-drems05|cib-drems06|cib-prodems01|cib-prodems02|cib-prodems03|cib-prodems04|cib-prodems05|cib-prodems06|cib-pemssbld01|cib-pemssbld02|cib-fanout1|cib-fanout2|cib-tmsp03|cib-tmsp04|cib-calypsorate1|cib-calypsorate2|cib-calypsorate-dr|cib-calypsosp1|cib-calypsosp2): 
+TEST: (Hawk Domain Equals HawkMon)
+RULE NAME:onAgentAlive(Agent Name=cib-drems05|cib-drems06|cib-prodems01|cib-prodems02|cib-prodems03|cib-prodems04|cib-prodems05|cib-prodems06|cib-pemssbld01|cib-pemssbld02|cib-fanout1|cib-fanout2|cib-tmsp03|cib-tmsp04|cib-calypsosp1|cib-calypsosp2): 
+TEST: (Hawk Domain Contains HawkMon)
+RULE NAME:onAgentExpired(Agent Name=cib-uatems01|cib-uatems02|cib-uatems03|cib-uatems04|cib-uatems05|cib-uemssbld01|cib-uemssbld02): 
+TEST: (Hawk Domain Equals HawkMon)
+RULE NAME:onAgentAlive(Agent Name=cib-uatems01|cib-uatems02|cib-uatems03|cib-uatems04|cib-uatems05|cib-uemssbld01|cib-uemssbld02): 
+TEST: (Hawk Domain Contains HawkMon)
+RULE NAME:onAgentExpired(Agent Name=cib-devrv01|cib-devrv02): 
+TEST: (Hawk Domain Equals HawkMon)
+RULE NAME:onAgentAlive(Agent Name=cib-devrv01|cib-devrv02): 
+TEST: (Hawk Domain Contains HawkMon)
+RULE NAME:onAgentExpired(Agent Name=cib-rrvduc01|cib-rrvmccr01|cib-rrvplz01|cib-rrvnboc01|cib-rrvnypp01|cib-prodrv01|cib-prodrv02|cib-prv1wac01|cib-prv1wac02|cib-prvsbld01|cib-prvsbld02|cib-prvsbld03|cib-prvsbld04): 
+TEST: (Hawk Domain Equals HawkMon)
+RULE NAME:onAgentAlive(Agent Name=cib-rrvduc01|cib-rrvmccr01|cib-rrvplz01|cib-rrvnboc01|cib-rrvnypp01|cib-prodrv01|cib-prodrv02|cib-prv1wac01|cib-prv1wac02|cib-prvsbld01|cib-prvsbld02|cib-prvsbld03|cib-prvsbld04): 
+TEST: (Hawk Domain Contains HawkMon)
+RULE NAME:onAgentExpired(Agent Name=cib-uatrv01|cib-uatrv02|cib-urv1wac01|cib-urv1wac02|cib-urvsbld01|cib-urvsbld02|cib-urvsbld03|cib-urvsbld04): 
+TEST: (Hawk Domain Equals HawkMon)
+RULE NAME:onAgentAlive(Agent Name=cib-uatrv01|cib-uatrv02|cib-urv1wac01|cib-urv1wac02|cib-urvsbld01|cib-urvsbld02|cib-urvsbld03|cib-urvsbld04): 
+TEST: (Hawk Domain Contains HawkMon)
+RULE NAME:getInstanceCount(Process Name=slapd):15 
+TEST: (Process Count < 2)
+RULE NAME:getInstanceCount(Process Name=slapd):15 
+TEST: (Process Count == 2)
+RULE NAME:getInstanceCount(Process Name=slapd):15 
+TEST: (Process Count < 1)
+RULE NAME://localhost:7222 
+TEST: (pendingMessageCount >= 15)
+TEST: (pendingMessageCount InRange 10 15)
+TEST: (pendingMessageCount < 10)
+RULE NAME://localhost:7222 
+TEST: (pendingMessageCount >= 15)
+TEST: (pendingMessageCount InRange 10 15)
+TEST: (pendingMessageCount < 10)
+RULE NAME://cib-prodemsmessaging05.usa.wachovia.net:7222 
+TEST: (running isFalse )
+RULE NAME://cib-prodemsmessaging05.usa.wachovia.net:7224 
+TEST: (running isFalse )
+RULE NAME://cib-prodemsmessaging05.usa.wachovia.net:7222 
+TEST: ((numConnects >= 700) AND (numConnects <= 900))
+TEST: (numConnects > 900)
+RULE NAME://cib-prodemsmessaging05.usa.wachovia.net:7224 
+TEST: ((numConnects >= 700) AND (numConnects <= 900))
+TEST: (numConnects > 900)
+RULE NAME://cib-prodemsmessaging05.usa.wachovia.net:7222 
+TEST: (pendingMessageCount >= 2)
+TEST: (pendingMessageCount >= 4)
+TEST: (pendingMessageCount < 2)
+RULE NAME://cib-prodemsmessaging05.usa.wachovia.net:7222 
+TEST: ((pendingMessageCount >= 4) AND (pendingMessageCount <= 10))
+TEST: (pendingMessageCount >= 10)
+TEST: (pendingMessageCount < 4)
+RULE NAME://cib-prodemsmessaging06.usa.wachovia.net:7222 
+TEST: (running isFalse )
+RULE NAME://cib-prodemsmessaging06.usa.wachovia.net:7224 
+TEST: (running isFalse )
+RULE NAME://cib-prodemsmessaging06.usa.wachovia.net:7222 
+TEST: ((numConnects >= 700) AND (numConnects <= 900))
+TEST: (numConnects > 900)
+RULE NAME://cib-prodemsmessaging06.usa.wachovia.net:7224 
+TEST: ((numConnects >= 700) AND (numConnects <= 900))
+TEST: (numConnects > 900)
+RULE NAME://cib-prodemsmessaging06.usa.wachovia.net:7222 
+TEST: (pendingMessageCount >= 2)
+TEST: (pendingMessageCount >= 4)
+TEST: (pendingMessageCount < 2)
+RULE NAME://cib-prodemsmessaging06.usa.wachovia.net:7222 
+TEST: ((pendingMessageCount >= 4) AND (pendingMessageCount <= 10))
+TEST: (pendingMessageCount >= 10)
+TEST: (pendingMessageCount < 4)
+RULE NAME:getInstanceCount(Process Name=trdprvrd):60 
+TEST: (Process Count < 1)
+RULE NAME://cib-tmsd01.usa.wachovia.net:7222 
+TEST: (running isFalse )
+RULE NAME://cib-tmsd01.usa.wachovia.net:7224 
+TEST: (running isFalse )
+RULE NAME://cib-tmsd01.usa.wachovia.net:7226 
+TEST: (running isFalse )
+RULE NAME://cib-tmsd01.usa.wachovia.net:7228 
+TEST: (running isFalse )
+RULE NAME://cib-tmsd01.usa.wachovia.net:7222 
+TEST: ((numConnects >= 700) AND (numConnects <= 900))
+TEST: (numConnects > 900)
+RULE NAME://cib-tmsd01.usa.wachovia.net:7224 
+TEST: ((numConnects >= 700) AND (numConnects <= 900))
+TEST: (numConnects > 900)
+RULE NAME://cib-tmsd01.usa.wachovia.net:7226 
+TEST: ((numConnects >= 700) AND (numConnects <= 900))
+TEST: (numConnects > 900)
+RULE NAME://cib-tmsd01.usa.wachovia.net:7228 
+TEST: ((numConnects >= 700) AND (numConnects <= 900))
+TEST: (numConnects > 900)
+RULE NAME://cib-tmsd02.usa.wachovia.net:7222 
+TEST: (running isFalse )
+RULE NAME://cib-tmsd02.usa.wachovia.net:7222 
+TEST: ((numConnects >= 700) AND (numConnects <= 900))
+TEST: (numConnects > 900)
+RULE NAME://cib-uatemsmessaging01.usa.wachovia.net:7222,tcp 
+TEST: (pendingMessageCount >= 25)
+TEST: (pendingMessageCount InRange 20 25)
+TEST: (pendingMessageCount < 20)
+RULE NAME://cib-uatemsmessaging01.usa.wachovia.net:7222,tcp 
+TEST: (pendingMessageCount >= 25)
+TEST: (pendingMessageCount InRange 20 25)
+TEST: (pendingMessageCount < 20)
+RULE NAME://cib-uatemsmessaging01.usa.wachovia.net:7222,tcp 
+TEST: (pendingMessageCount >= 25)
+TEST: (pendingMessageCount InRange 20 25)
+TEST: (pendingMessageCount < 20)
+RULE NAME://cib-uatemsmessaging01.usa.wachovia.net:7222,tcp 
+TEST: (pendingMessageCount >= 25)
+TEST: (pendingMessageCount InRange 20 25)
+TEST: (pendingMessageCount < 20)
+RULE NAME://cib-uatemsmessaging01.usa.wachovia.net:7222,tcp 
+TEST: (pendingMessageCount >= 25)
+TEST: (pendingMessageCount InRange 20 25)
+TEST: (pendingMessageCount < 20)
+RULE NAME://cib-uatemsmessaging01.usa.wachovia.net:7222,tcp 
+TEST: (pendingMessageCount >= 15)
+TEST: (pendingMessageCount InRange 10 15)
+TEST: (pendingMessageCount < 10)
+RULE NAME://cib-uatemsmessaging01.usa.wachovia.net:7222,tcp 
+TEST: (pendingMessageCount >= 15)
+TEST: (pendingMessageCount InRange 10 15)
+TEST: (pendingMessageCount < 10)
+RULE NAME://cib-uatemsmessaging05.usa.wachovia.net:7222 
+TEST: (running isFalse )
+RULE NAME://cib-uatemsmessaging05.usa.wachovia.net:7222 
+TEST: ((numConnects >= 1700) AND (numConnects <= 1900))
+TEST: (numConnects > 1900)

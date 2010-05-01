@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ruleBase>
+	<version>4.6.0</version>
+	<name><![CDATA[ems_secondary]]></name>
+	<schedule></schedule>
+	<author>ig on host cib-prodems03(162.111.85.92) at 12:24 Mon, Oct 16, 2006</author>
+	<lastModification>ig on host cib-prodems03(162.111.85.92) at 15:14 Fri, Feb 16, 2007</lastModification>
+	<comment><![CDATA[]]></comment>
+	<rule>
+		<name><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7224:isRunning():15]]></name>
+		<schedule></schedule>
+		<overRuling>0</overRuling>
+		<dataSource>
+			<microAgentName><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://localhost:7224]]></microAgentName>
+			<methodName>isRunning</methodName>
+			<interval>15000</interval>
+		</dataSource>
+		<test>
+			<name><![CDATA[(running isFalse )]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.IsFalse" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[running]]></dataObject>
+				</operator>
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendAlertHigh(alertMsg=Secondary EMS on ${Internal.Agent Name} is down! )]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendAlertMessage</methodName>
+				<dataElement name="message">
+					<dataObject class="COM.TIBCO.hawk.config.rbengine.rulebase.util.AlertHigh" ><![CDATA[Secondary EMS on ${Internal.Agent Name} is down! ]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Secondary EMS on ${Internal.Agent Name} is down!, From=HawkEventMonitor@hawk-mgmt, Mail Server=smtp.wachovia.net, Subject=Secondary EMS on ${Internal.Agent Name} is down!, To=cib.tibco.support@funb.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[cib.tibco.support@funb.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkEventMonitor@hawk-mgmt]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[Secondary EMS on ${Internal.Agent Name} is down!]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Secondary EMS on ${Internal.Agent Name} is down!]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(running isTrue )]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.IsTrue" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[running]]></dataObject>
+				</operator>
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=Secondary EMS on ${Internal.Agent Name} is up and running., From=HawkEventMonitor@hawk-mgmt, Mail Server=smtp.wachovia.net, Subject=Secondary EMS on ${Internal.Agent Name} is up and running., To=cib.tibco.support@wachovia.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[cib.tibco.support@wachovia.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkEventMonitor@hawk-mgmt]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[Secondary EMS on ${Internal.Agent Name} is up and running.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[Secondary EMS on ${Internal.Agent Name} is up and running.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+	</rule>
+</ruleBase>

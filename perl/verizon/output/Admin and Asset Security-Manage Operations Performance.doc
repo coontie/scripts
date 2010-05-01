@@ -1,0 +1,16 @@
+Title: Manage Operations Performance
+Actors:
+	DDC Ops User
+	DDC System
+Activities:
+	Activity #1 Start 
+	Activity #2 Login to admin console 
+	Activity #3 Select an operational area of interest 
+	Activity #4 Perform desired action 
+	Activity #5 End 
+	Activity #6 Submit confirmation 
+	Activity #7 Display confirmation 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

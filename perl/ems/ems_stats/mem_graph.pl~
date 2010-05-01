@@ -1,0 +1,74 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+use GD::Graph::linespoints;
+use Data::Dumper;
+
+require 'save.pl';
+
+my @listOfFiles = `ls /home/ig/scripts/ems/stats/output/*`;
+
+foreach my $fileName (@listOfFiles) {
+
+    my $serverName = `/bin/basename $fileName`;
+    chomp ($serverName);
+
+    my @data =  read_data_from_csv($fileName) or die "Cannot read data from $fileName";
+
+    #print Dumper(@data);
+
+    #print "RETURNED: max is $max min is $min \n";
+
+    my $my_graph = new GD::Graph::linespoints(1200,500);
+    my $min = 0;
+
+    $my_graph->set( 
+    	x_label => 'Time',
+    	y_label => '',
+        x_labels_vertical => 1,
+    	title => $serverName,
+    	#y_max_value => $max,
+    	y_min_value => $min,
+        x_label_skip => 6,
+        marker_size => 1,
+#    	y_tick_number => 6,
+#    	y_label_skip => 6,
+#    	markers => [ 1, 5 ],
+
+    	transparent => 0,
+    );
+
+#    $my_graph->set( markers => [7] );
+
+    $my_graph->set_legend("Mem usage", "AsyncDB size", "SyncDB size");
+
+    $my_graph->plot(\@data)->png;
+    save_chart($my_graph, "graphs/$serverName");
+}
+
+
+sub read_data_from_csv
+{
+	my $fn = shift;
+	my @d = ();
+
+	open(ZZZ, $fn) || return ();
+
+	while (<ZZZ>)
+	{
+		chomp;
+		# you might want Text::CSV here
+		my @row = split /,/;
+
+		for (my $i = 0; $i <= $#row; $i++)
+		{
+			undef $row[$i] if ($row[$i] eq 'undef');
+			push @{$d[$i]}, $row[$i];
+		}
+	}
+
+	close (ZZZ);
+
+	return @d;
+}

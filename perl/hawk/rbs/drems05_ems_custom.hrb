@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ruleBase>
+	<version>4.6.0</version>
+	<name><![CDATA[drems05_ems_custom]]></name>
+	<schedule></schedule>
+	<author>a446183 on host cib-drems05(162.111.25.72) at 14:20 Wed, Aug 23, 2006</author>
+	<lastModification>a446183 on host cib-drems05(162.111.25.72) at 14:26 Wed, Aug 23, 2006</lastModification>
+	<comment><![CDATA[]]></comment>
+	<rule>
+		<name><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://cib-dremsmessaging05.usa.wachovia.net:7222:getConnections():60]]></name>
+		<schedule></schedule>
+		<overRuling>0</overRuling>
+		<dataSource>
+			<microAgentName><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://cib-dremsmessaging05.usa.wachovia.net:7222]]></microAgentName>
+			<methodName>getConnections</methodName>
+			<interval>60000</interval>
+		</dataSource>
+		<test>
+			<name><![CDATA[(userName Equals sec20ibprod)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.EqualsObject" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[userName]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.String" ><![CDATA[sec20ibprod]]></dataObject>
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=, Content=${userName} has connected to ${Internal.Agent Name}., From=HawkAgent@hawk-mgmt, Mail Server=smtp.wachovia.net, Subject=ALERT: ${userName} has connected to ${Internal.Agent Name}., To=FI.supplevel2@wachovia.com,7046040600@vtext.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[FI.supplevel2@wachovia.com,7046040600@vtext.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@hawk-mgmt]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[ALERT: ${userName} has connected to ${Internal.Agent Name}.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[${userName} has connected to ${Internal.Agent Name}.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<consequenceAction>
+				<name><![CDATA[sendAlertLow(alertMsg=${userName} has connected to ${Internal.Agent Name}.)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendAlertMessage</methodName>
+				<dataElement name="message">
+					<dataObject class="COM.TIBCO.hawk.config.rbengine.rulebase.util.AlertLow" ><![CDATA[${userName} has connected to ${Internal.Agent Name}.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+	</rule>
+</ruleBase>

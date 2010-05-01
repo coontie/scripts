@@ -1,0 +1,74 @@
+Name
+3PL: Haras Order Prep Request Interface to Haras Nationaux (Equine)
+3PL: List of Indexel Chips to Haras Nationaux - 3PL to Haras via Merial flow for replenishment - (Equine)
+3PL: Haras Shipment Notice Interface to Oracle
+Haras Equine Customer Agreement interface to Oracle
+3PL to Oracle: Stock Movements to be automatically applied to Oracle - Confirmation of Goods Receipts at 3PL (Stock Transfer to 3PL after Production, or from other Merial warehousses) - Confirmation of Stock Transfer in Oracle
+3PL to Oracle: Stock Movements to be automatically applied to Oracle for Pharma Release from 3PL (following Merial signal/request)
+3PL: CHIP ID / BOX  to CSP   
+Oracle to 3PL: Pharma Release Signal to 3PL (Merial stock not yet available for sales)
+Oracle to OUAP- Outbound Items
+Oracle to OUAP- Outbound formulas
+Oracle to OUAP- Outbound Inventories
+Oracle to OUAP- Outbound Batches
+Oracle to OUAP- Outbound sales orders
+OM: EDI Sales Order Acknowledgement
+ORACLE  to 3PL: Batch Allocation - Reservation (Reservation only)
+ORACLE  to 3PL: Pick Request (Pick Only for Shipment to Customer and Merial Stock Transfer)
+3PL to ORACLE: Pick/Pack Confirmation for Shipments to Customers and Stock Transfers (i.e. with and without Packing List)
+3PL to ORACLE: Ship Confirm
+OM: French CONCERTO (CRM ) Orders  to  ESOS   
+Oracle to SAT: Customer Master to Concerto (CRM)
+Oracle to SAT: Items & Prices to Concerto (CRM)
+Oracle to SAT: Item Categories to Concerto (CRM)
+Oracle to SAT: Item Extract to Ariane
+Oracle to SAT: Customer Extract to Ariane
+Oracle to SAT: Extracts (8) to Acor 
+CS: Price List Upload Tool (request set)
+3PL to Oracle: Stock Movements to be automatically applied to Oracle for miscelaneous stock movement adjustments
+AR: Externalize FR Domestic "Print/Fold/Send Customer Invoices" at 3rd Party (Aspheria or other) 
+OM: EDI: - Wholesaler Orders to ESOS (ESOS = EDI System & Order System, US Program)
+OM: Manugistic Planned Arrivals to ESOS ( Planned Arrivals Excel integration) 
+Oracle to 3PL:  Stock Transfer to 3PL location - Triggers Goods Receipts at 3PL
+Budgetary production plan (Annual) MPSII/III to Oracle
+Firmed Planned Orders / Planned Orders (Oracle inbound)
+Item from Oracle to MPSII/III
+Works Order from Oracle to MPSII/III
+Works Order Bill of Material from Oracle to MPSII/III
+Inventory from Oracle to MPSII/III
+Bill of Material from Oracle to MPSII/III
+ORACLE to Weighting Soft- Outbound (Item) 
+ORACLE to Weighting Soft- Outbound (Lot) 
+ORACLE to Weighting Soft- Outbound (Batch) 
+Oracle to MAIA- Outbound Batches
+Oracle to MAIA- Outbound Raw materials
+MAIA to Oracle- Inbound (previous end of control date) 
+Oracle to MFM- Outbound Items
+Oracle to MFM- Outbound Batches
+Oracle to MFM- Outbound raw materials
+ORACLE to Lot Dossier (Lentilly) 
+ORACLE to Lot Dossier (Toulouse) 
+Oracle to TDC (Cycle Time)- Outbound Items
+Oracle to TDC (Cycle Time)- Outbound Batches
+Oracle to GDE (Quality deviation management)- Outbound Items
+Oracle to GDE (Quality deviation management)- Outbound Suppliers
+Oracle to GIC (Packaging Instructions Management) - Outbound Items
+Oracle to GIC (Packaging Instructions Management) - Outbound Ingredients
+Oracle to OR01 (Packaging detailed scheduling) - outbound -Batches
+Automatic Fax Acknowledgment (Streamserve)
+AP Invoice Feed from AMEX PCARD
+CARL interface - requisition to Oracle
+CARL interface - PO number to CARL
+CARL interface - Receipt to Oracle
+CARL interface - Cost distribution to Oracle
+Extract information from Oracle to GED
+Import information from GED to Oracle
+FTP File Transfer from Oracle to XRT
+France Interface to upload employee expenses in iExpense (Business Card)
+French Travel Agency Upload Program (HAVAS)
+Generate file to pay the foreign suppliers
+Generate payment file for printing checks-Third Party outsourcing for printing checks
+MVMI (Custom table to be used by discoverer)
+Payroll Journal Entry from ADP
+Oracle/IDEP
+Oracle GL/Report Base 

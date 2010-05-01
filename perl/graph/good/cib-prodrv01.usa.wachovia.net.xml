@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rendezvous SYSTEM "http://www.rv.tibco.com/dtd/rv">
+<rendezvous url="http://cib-prodrv01.usa.wachovia.net:27580">
+  <configuration timestamp="20061207124038-0500">
+    <rvrd-parameters>
+      <logging connections="no" subject-data="no" subject-interest="no" />
+      <router maximum-backlog="0" name="cib-prodrv01-openlink">
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-prodrv01" local-port="50011" neighbor-name="cib-drrv02-openlink" remote-host="cib-drrv02" remote-port="60021" type="ACTIVE" />
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-prodrv01" local-port="50011" neighbor-name="cib-prv1wac02-openlink" remote-host="cib-prv1wac02" remote-port="10021" type="ACTIVE" />
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-prodrv01" local-port="50011" neighbor-name="cib-drrv01-openlink" remote-host="cib-drrv01" remote-port="60011" type="ACTIVE" />
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-prodrv01" local-port="50011" neighbor-name="cib-prv1wac01-openlink" remote-host="cib-prv1wac01" remote-port="10011" type="ACTIVE" />
+        <local-network cost="1" name="prodrv-slssas-openlink" network=";239.255.254.1" service="27503">
+          <import subject="_RVCM.&gt;" weight="10" />
+          <import subject="*.endur.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="*.endur.&gt;" />
+        </local-network>
+      </router>
+    </rvrd-parameters>
+    <security-parameters>
+      <administrator password="!!!SECRET!!!" username="rvadmin" />
+      <certificate index="1" private-key-password="!!! SECRET !!!">
+        <use for="HTTPS" />
+        <use for="ROUTERS_TO_ROUTERS" />
+        <PEM-data>
+          -----BEGIN CERTIFICATE-----
+          MIIC/zCCAmigAwIBAgIBATANBgkqhkiG9w0BAQQFADCBgDELMAkGA1UEBhMCTkEx
+          CzAJBgNVBAgTAk5BMQswCQYDVQQHEwJOQTESMBAGA1UEChMJQW5vbnltb3VzMRIw
+          EAYDVQQLEwlBbm9ueW1vdXMxLzAtBgNVBAMTJmNpYi1wcm9kcnZtZXNzYWdpbmcw
+          MS51c2Eud2FjaG92aWEubmV0MB4XDTA1MTAxODIzMDk0OFoXDTA2MTAxODIzMDk0
+          OFowgYAxCzAJBgNVBAYTAk5BMQswCQYDVQQIEwJOQTELMAkGA1UEBxMCTkExEjAQ
+          BgNVBAoTCUFub255bW91czESMBAGA1UECxMJQW5vbnltb3VzMS8wLQYDVQQDEyZj
+          aWItcHJvZHJ2bWVzc2FnaW5nMDEudXNhLndhY2hvdmlhLm5ldDCBnzANBgkqhkiG
+          9w0BAQEFAAOBjQAwgYkCgYEAoiRwy3nNazSjO7aHBtfbxC+EuXr/a5ME9lE2GIdM
+          p7rGIC5nxiPZeUee3LUgZ7rcSerC0g5EpdhDVxwFAAjOyCeGaQNdcuyHI9JaOyRK
+          Wmp30XWcixLmlxg9sjOpjKU6ocxBapkzwHzP3Ier04tFpVwLvHmOKOHt8uP/SraW
+          FqUCAwEAAaOBhjCBgzARBglghkgBhvhCAQEEBAMCAkQwCwYDVR0PBAQDAgLsMBMG
+          A1UdJQQMMAoGCCsGAQUFBwMBMB0GA1UdDgQWBBRxgr4qMi6oCwXOHqSaKs2TvxTS
+          3zAfBgNVHSMEGDAWgBRxgr4qMi6oCwXOHqSaKs2TvxTS3zAMBgNVHRMEBTADAQH/
+          MA0GCSqGSIb3DQEBBAUAA4GBACTM45VFPvM/XJFckpqCC9lCTVri+QJlneGSKf7o
+          Xb83kw19GesrnoBmTKRf2MvBqL5QWC1u8wRhPbxc2O+dIkPRB86pYHNk57bti7sw
+          FRmrMtD5JzCTp45gWf8HqhR4MSVRtsKBwYGZfy4pnz1buGcfdtaBZ6I6T+k7U4c8
+          RfGI
+          -----END CERTIFICATE-----
+          !!! SECRET PRIVATE KEY !!!
+        </PEM-data>
+      </certificate>
+      <certificate index="2" />
+      <certificate index="3" />
+      <certificate index="4" />
+    </security-parameters>
+  </configuration>
+</rendezvous>

@@ -1,0 +1,29 @@
+Title: Manage Master Account
+Actors:
+	DDC Operations
+	DDC System
+Activities:
+	Activity #1 Validate user 
+	Activity #2 Validate access 
+	Activity #3 Opt to manage a master account 
+	Activity #4 Choose "Manage Master Account" option 
+	Activity #5 Log into DDC admin console 
+	Activity #6 Start 
+	Activity #7 Present menu of available choices 
+	Activity #8 Present "Search Records" menu 
+	Activity #9 Enter search parameters 
+	Activity #10 Submit search parameters 
+	Activity #11 Search Master Account DB 
+	Activity #12 Display results 
+	Activity #13 Make changes 
+	Activity #14 Submit updates 
+	Activity #15 Validate submission 
+	Activity #16 Is submission valid? 
+	Activity #17 User wishes to save? 
+	Activity #18 Persist changes 
+	Activity #19 Cancel 
+	Activity #20 End 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

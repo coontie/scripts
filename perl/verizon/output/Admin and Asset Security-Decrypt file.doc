@@ -1,0 +1,15 @@
+Title: Decrypt file
+Actors:
+	Encryption Engine
+Activities:
+	Activity #1 Receive decryption request 
+	Activity #2 Retrieve file location details 
+	Activity #3 End 
+	Activity #4 Decrypt file 
+	Activity #5 Retrieve decryption method 
+	Activity #6 Fetch decryption key 
+	Activity #7 Start 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

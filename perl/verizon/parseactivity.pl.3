@@ -1,0 +1,34 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+use XML::XPath;
+use XML::XPath::XMLParser;
+
+my $modelFile = $ARGV[0];
+
+die "No file specified!" unless ($modelFile);
+
+my $parser = XML::XPath->new(filename => $modelFile);
+
+my @modelName = $parser->find('//uml:Model')->get_nodelist;
+print "Name is ". $modelName[0]->getAttribute('name')."\n";
+my @activityDiagrams = $parser->find('//packagedElement[@xmi:type="uml:Activity"]')->get_nodelist;
+#print "activities has ". scalar @activities ." elements \n";
+foreach my $activityDiagram (@activityDiagrams) {
+	print "Title: ".$activityDiagram->getAttribute('name') . "\n";
+	#actors live in ActivityPartitions
+	print "Actors:\n";
+	foreach my $actor ($parser->find('./group[@xmi:type="uml:ActivityPartition"]',$activityDiagram)->get_nodelist) {
+		my $actorName = $actor->getAttribute('name');
+		print "\t".$actorName."\n";
+	}
+	print "Activities:\n";
+	my $i=1;
+	foreach my $node ($parser->find('./node',$activityDiagram)->get_nodelist) {
+		my $nodeName = $node->getAttribute('name');
+		print "\tActivity \#$i $nodeName \n";
+		$i++;
+	}
+	$i=0;
+}

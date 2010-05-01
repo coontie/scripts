@@ -1,0 +1,21 @@
+Title: Manage Bill of Materials Template
+Actors:
+	User (Master Account Admin or DDC Ops User)
+	DDC System
+Activities:
+	Activity #1  
+	Activity #2 User opts to amend a Bill of Materials 
+	Activity #3 Display list of Bill Of Materials for the User 
+	Activity #4 User Selects BOM Template 
+	Activity #5 Display BOM Template details 
+	Activity #6 Deactivate BOM template ? 
+	Activity #7 Deactivate BOM template 
+	Activity #8  
+	Activity #9 Update BOM template name,description and asset trransformation steps 
+	Activity #10 Save as a new BOM template 
+	Activity #11 Save as a New BOM template 
+	Activity #12 Update BOM Template 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

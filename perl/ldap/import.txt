@@ -1,0 +1,2 @@
+1029:14:UNIX:scromar:Scott Cromar:/bin/bash:/home/scromar:*
+1048:203:UNIX:dcomeau:Dave Comeau:/bin/bash:/home/dcomeau:*

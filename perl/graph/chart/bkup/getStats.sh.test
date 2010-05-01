@@ -1,0 +1,33 @@
+#!/bin/bash
+
+serverList='cib-calypsorate1:8222 cib-calypsorate2:8222'
+
+for server in $serverList
+do
+    /opt/tibco/ems/bin/tibemsadmin -server tcp://$server -user admin -password Sen4@pp3 -script /home/ig/perl/graph/chart/script.ems > /tmp/ems.status.txt
+
+    pending=`grep "Pending Messages" /tmp/ems.status.txt | awk -F: '{print $2}'`
+
+    connections=`grep "Connections" /tmp/ems.status.txt | awk -F: '{print $2}'`
+
+    inbound=`grep "Inbound" /tmp/ems.status.txt | awk -F: '{print $2}' | awk '{print $1}'`
+
+    outbound=`grep "Outbound" /tmp/ems.status.txt | awk -F: '{print $2}' | awk '{print $1}'`
+
+    fileName=`echo $server | sed 's/\:/\./g' | awk -F. '{print $1}'`
+    if [ "$pending" = "" ]; then
+        echo "Got nothing" > /dev/null
+    else
+        echo $timeStamp,$pending,$connections,$inbound,$outbound >> /home/ig/perl/graph/chart/$fileName
+        #remove the top line
+        sed '1,1d' /home/ig/perl/graph/chart/results/$fileName > /tmp/$fileName
+        mv /tmp/$fileName /home/ig/perl/graph/chart/results/$fileName
+    fi
+done
+
+#generate the graphs
+cd /home/ig/perl/graph/chart/
+/home/ig/perl/graph/chart/graph.pl
+
+#transfer the files
+scp /home/ig/perl/graph/chart/graphs/cib-calypsorate* cib-labmsg01.usa.wachovia.net:/srv/www/htdocs/ems/graphs/

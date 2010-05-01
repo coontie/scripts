@@ -1,0 +1,18 @@
+Title: Manage System Performance
+Actors:
+	DDC Ops User
+	DDC System User
+	DDC System
+Activities:
+	Activity #1 Start 
+	Activity #2 Login to console 
+	Activity #3 Identify an area of interest 
+	Activity #4 Perform analysis 
+	Activity #5 Perform corrective action 
+	Activity #6 Display confirmation 
+	Activity #7 End 
+	Activity #8 Notify DDC Sys Ops 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

@@ -1,0 +1,21 @@
+<?xml version = "1.0"?>
+<config>
+
+	<HOST HOSTNAME="cnysrc1" TYPE="source"></HOST>
+	<HOST HOSTNAME="cnysrc2" TYPE="source"></HOST>
+	<HOST HOSTNAME="cnjsrc1" TYPE="source"></HOST>
+	<HOST HOSTNAME="cnjsrc2" TYPE="source"></HOST>
+	<HOST HOSTNAME="cnyp2ps1" TYPE="p2ps"></HOST>
+	<HOST HOSTNAME="cnyp2ps2" TYPE="p2ps"></HOST>
+	<HOST HOSTNAME="cnjp2ps1" TYPE="p2ps"></HOST>
+
+<SOURCE>
+	<STATUS COMMAND="mon -print SERVICES | grep state | awk '{print $2}'" DESC="up or down"></STATUS>
+	<SERVERID COMMAND="mon -print SERVERS | grep serverID | awk '{print $2}'"></SERVERID>
+</SOURCE>
+<P2PS>
+	<STATUS COMMAND="mon -print SERVICES | grep state | awk '{print $2}'" DESC="up or down"></STATUS>
+	<SERVERID COMMAND="mon -print SERVERS | grep serverID | awk '{print $2}'"></SERVERID>
+	<OVERFLOW COMMAND="mon -print IPC | grep overflow | awk '{print $2}'"></OVERFLOW>
+</P2PS>
+</config>

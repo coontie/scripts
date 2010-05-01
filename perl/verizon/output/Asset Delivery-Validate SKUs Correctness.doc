@@ -1,0 +1,23 @@
+Title: Validate SKUs Correctness
+Actors:
+	DDC
+	User
+	DWM
+Activities:
+	Activity #1 Start 
+	Activity #2 Accept distrubtion profile input 
+	Activity #3 Select a SKU 
+	Activity #4 Check for asset presense 
+	Activity #5 Is asset present? 
+	Activity #6 Notify user of error 
+	Activity #7 Check for distribution format 
+	Activity #8 Is format valid? 
+	Activity #9 End 
+	Activity #10 Check for more SKUs 
+	Activity #11 More SKUs? 
+	Activity #12 Check for extraneous assets 
+	Activity #13 Any extraneous assets? 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

@@ -1,0 +1,18 @@
+Title: Validate SKUs Existence
+Actors:
+	DDC
+	DWM
+Activities:
+	Activity #1 Start 
+	Activity #2 Accept asset list input 
+	Activity #3 Select an asset from the list 
+	Activity #4 Verify asset existence 
+	Activity #5 Does asset exist? 
+	Activity #6 Notify user of error 
+	Activity #7 Check for more assets 
+	Activity #8 More assets in list? 
+	Activity #9 End 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

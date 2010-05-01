@@ -1,0 +1,45 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+use XML::XPath;
+use XML::XPath::XMLParser;
+
+my $modelFile = $ARGV[0];
+
+die "No file specified!" unless ($modelFile);
+
+my $parser = XML::XPath->new(filename => $modelFile);
+
+#get all packaged elements
+#returns an XML::XPath::NodeSet object, which is an ordered list of nodes.
+foreach my $packagedElement ($parser->find('//uml:Model/packagedElement')->get_nodelist) {
+	#get the current name
+	my $currentPackagedElementName = $packagedElement->getAttribute('name');
+	#get the current type
+	my $currentPackagedElementType = $packagedElement->getAttribute('xmi:type');
+	#print "name is $currentModelName type is $currentModelType \n";
+	#only print if type uml:Activity, all other types (like actors) are ignored
+	print "$currentPackagedElementName \t $currentPackagedElementType \n";
+	#print $currentPackagedElementName."\n" if ($currentPackagedElementType eq 'uml:Activity');
+	foreach my $node ($parser->find('./node',$packagedElement)->get_nodelist) {
+		my $nodeName = $node->getAttribute('name');
+		print "\t node is $nodeName \n";
+	}
+}
+
+
+#	foreach my $packagedElement ($xmlobj->child("xmi:XMI")->children("uml:Model")) {
+#		my $packagedElementName = $packagedElement->attribute('name');
+#		print "current packagedElement is $packagedElementName \n";
+#		foreach my $pkgElement ($packagedElement->children("packagedElement")) {
+#			my $pkgElementName = $pkgElement->attribute('name');
+#			#only get those that match uml:Activity type
+#			print "current package is $pkgElementName \n" if ($pkgElement->attribute('xmi:type') eq 'uml:Activity');
+#			foreach my $node ($pkgElement->children('node') ) {
+##				my $nodeName = $node->attribute('name');
+#				my $nodeType = $node->attribute('xmi:type');
+#				print "\t type $nodeType node name is $nodeName \n";
+#			}
+#		}
+#	}

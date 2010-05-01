@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ruleBase>
+	<version>4.6.0</version>
+	<name><![CDATA[drems05_ems_base]]></name>
+	<schedule></schedule>
+	<author>a446183 on host cib-devems01(162.111.22.248) at 13:58 Thu, Aug 10, 2006</author>
+	<lastModification>jwbales on host cib-devems01(162.111.22.248) at 13:40 Wed, Aug 16, 2006</lastModification>
+	<comment><![CDATA[]]></comment>
+	<rule>
+		<name><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://cib-dremsmessaging05.usa.wachovia.net:7222:isRunning():60]]></name>
+		<schedule></schedule>
+		<overRuling>0</overRuling>
+		<dataSource>
+			<microAgentName><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://cib-dremsmessaging05.usa.wachovia.net:7222]]></microAgentName>
+			<methodName>isRunning</methodName>
+			<interval>60000</interval>
+		</dataSource>
+		<test>
+			<name><![CDATA[(running isFalse )]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.IsFalse" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[running]]></dataObject>
+				</operator>
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendAlertHigh(alertMsg=${Internal.Agent Name} EMS (instance 7222) is down.)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendAlertMessage</methodName>
+				<dataElement name="message">
+					<dataObject class="COM.TIBCO.hawk.config.rbengine.rulebase.util.AlertHigh" ><![CDATA[${Internal.Agent Name} EMS (instance 7222) is down.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=cib.tibco.support@wachovia.com, Content=${Internal.Agent Name} EMS (instance 7222) is down., From=HawkAgent@hawk-mgmt, Mail Server=smtp.wachovia.net, Subject=${Internal.Agent Name} EMS (instance 7222) is down., To=igor.kantor1@my2way.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[igor.kantor1@my2way.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@hawk-mgmt]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[cib.tibco.support@wachovia.com]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[${Internal.Agent Name} EMS (instance 7222) is down.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[${Internal.Agent Name} EMS (instance 7222) is down.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.IsTrue" >
+					<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+						<dataObject class="java.lang.String" ><![CDATA[running]]></dataObject>
+					</operator>
+				</operator>
+			</clearOn>
+		</test>
+	</rule>
+	<rule>
+		<name><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://cib-dremsmessaging05.usa.wachovia.net:7224:isRunning():60]]></name>
+		<schedule></schedule>
+		<overRuling>0</overRuling>
+		<dataSource>
+			<microAgentName><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://cib-dremsmessaging05.usa.wachovia.net:7224]]></microAgentName>
+			<methodName>isRunning</methodName>
+			<interval>60000</interval>
+		</dataSource>
+		<test>
+			<name><![CDATA[(running isFalse )]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.IsFalse" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[running]]></dataObject>
+				</operator>
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendAlertHigh(alertMsg=${Internal.Agent Name} EMS (instance 7224) is down.)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendAlertMessage</methodName>
+				<dataElement name="message">
+					<dataObject class="COM.TIBCO.hawk.config.rbengine.rulebase.util.AlertHigh" ><![CDATA[${Internal.Agent Name} EMS (instance 7224) is down.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=cib.tibco.support@wachovia.com, Content=${Internal.Agent Name} EMS (instance 7224) is down., From=HawkAgent@hawk-mgmt, Mail Server=smtp.wachovia.net, Subject=${Internal.Agent Name} EMS (instance 7224) is down., To=igor.kantor1@my2way.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[igor.kantor1@my2way.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@hawk-mgmt]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[cib.tibco.support@wachovia.com]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[${Internal.Agent Name} EMS (instance 7224) is down.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[${Internal.Agent Name} EMS (instance 7224) is down.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.IsTrue" >
+					<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+						<dataObject class="java.lang.String" ><![CDATA[running]]></dataObject>
+					</operator>
+				</operator>
+			</clearOn>
+		</test>
+	</rule>
+	<rule>
+		<name><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://cib-dremsmessaging05.usa.wachovia.net:7222:getNumConnections():60]]></name>
+		<schedule></schedule>
+		<overRuling>0</overRuling>
+		<dataSource>
+			<microAgentName><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://cib-dremsmessaging05.usa.wachovia.net:7222]]></microAgentName>
+			<methodName>getNumConnections</methodName>
+			<interval>60000</interval>
+		</dataSource>
+		<test>
+			<name><![CDATA[((numConnects >= 700) AND (numConnects <= 900))]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.And" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThanOrEqualTo" >
+					<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+						<dataObject class="java.lang.String" ><![CDATA[numConnects]]></dataObject>
+					</operator>
+					<dataObject class="java.lang.Integer"  value="700" />
+				</operator>
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.LessThanOrEqualTo" >
+					<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+						<dataObject class="java.lang.String" ><![CDATA[numConnects]]></dataObject>
+					</operator>
+					<dataObject class="java.lang.Integer"  value="900" />
+				</operator>
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendAlertMedium(alertMsg=${numConnects} is reaching the limit.)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendAlertMessage</methodName>
+				<dataElement name="message">
+					<dataObject class="COM.TIBCO.hawk.config.rbengine.rulebase.util.AlertMedium" ><![CDATA[${numConnects} is reaching the limit.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(numConnects > 900)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[numConnects]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Integer"  value="900" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendAlertHigh(alertMsg=${numConnects} has reached the limit.)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendAlertMessage</methodName>
+				<dataElement name="message">
+					<dataObject class="COM.TIBCO.hawk.config.rbengine.rulebase.util.AlertHigh" ><![CDATA[${numConnects} has reached the limit.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=cib.tibco.support@wachovia.com, Content=${Internal.Agent Name} ${numConnects} has reached the limit., From=HawkAgent@hawk-mgmt, Mail Server=smtp.wachovia.net, Subject=${Internal.Agent Name} ${numConnects} has reached the limit., To=igor.kantor1@my2way.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[igor.kantor1@my2way.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@hawk-mgmt]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[cib.tibco.support@wachovia.com]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[${Internal.Agent Name} ${numConnects} has reached the limit.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[${Internal.Agent Name} ${numConnects} has reached the limit.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+	</rule>
+	<rule>
+		<name><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://cib-dremsmessaging05.usa.wachovia.net:7224:getNumConnections():60]]></name>
+		<schedule></schedule>
+		<overRuling>0</overRuling>
+		<dataSource>
+			<microAgentName><![CDATA[com.tibco.tibjms.admin.hawk.HawkController.tcp://cib-dremsmessaging05.usa.wachovia.net:7224]]></microAgentName>
+			<methodName>getNumConnections</methodName>
+			<interval>60000</interval>
+		</dataSource>
+		<test>
+			<name><![CDATA[((numConnects >= 700) AND (numConnects <= 900))]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.And" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThanOrEqualTo" >
+					<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+						<dataObject class="java.lang.String" ><![CDATA[numConnects]]></dataObject>
+					</operator>
+					<dataObject class="java.lang.Integer"  value="700" />
+				</operator>
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.LessThanOrEqualTo" >
+					<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+						<dataObject class="java.lang.String" ><![CDATA[numConnects]]></dataObject>
+					</operator>
+					<dataObject class="java.lang.Integer"  value="900" />
+				</operator>
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendAlertMedium(alertMsg=${numConnects} is reaching the limit.)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendAlertMessage</methodName>
+				<dataElement name="message">
+					<dataObject class="COM.TIBCO.hawk.config.rbengine.rulebase.util.AlertMedium" ><![CDATA[${numConnects} is reaching the limit.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+		<test>
+			<name><![CDATA[(numConnects > 900)]]></name>
+			<schedule></schedule>
+			<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.GreaterThan" >
+				<operator class="COM.TIBCO.hawk.config.rbengine.rulebase.operators.RuleData" >
+					<dataObject class="java.lang.String" ><![CDATA[numConnects]]></dataObject>
+				</operator>
+				<dataObject class="java.lang.Integer"  value="900" />
+			</operator>
+			<consequenceAction>
+				<name><![CDATA[sendAlertHigh(alertMsg=${numConnects} has reached the limit.)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendAlertMessage</methodName>
+				<dataElement name="message">
+					<dataObject class="COM.TIBCO.hawk.config.rbengine.rulebase.util.AlertHigh" ><![CDATA[${numConnects} has reached the limit.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<consequenceAction>
+				<name><![CDATA[sendMail(CC=cib.tibco.support@wachovia.com, Content=${Internal.Agent Name} ${numConnects} has reached the limit., From=HawkAgent@hawk-mgmt, Mail Server=smtp.wachovia.net, Subject=${Internal.Agent Name} ${numConnects} has reached the limit., To=igor.kantor1@my2way.com)]]></name>
+				<schedule></schedule>
+				<microAgentName>COM.TIBCO.hawk.microagent.RuleBaseEngine</microAgentName>
+				<methodName>sendMail</methodName>
+				<dataElement name="To">
+					<dataObject class="java.lang.String" ><![CDATA[igor.kantor1@my2way.com]]></dataObject>
+				</dataElement>
+				<dataElement name="From">
+					<dataObject class="java.lang.String" ><![CDATA[HawkAgent@hawk-mgmt]]></dataObject>
+				</dataElement>
+				<dataElement name="CC">
+					<dataObject class="java.lang.String" ><![CDATA[cib.tibco.support@wachovia.com]]></dataObject>
+				</dataElement>
+				<dataElement name="Subject">
+					<dataObject class="java.lang.String" ><![CDATA[${Internal.Agent Name} ${numConnects} has reached the limit.]]></dataObject>
+				</dataElement>
+				<dataElement name="Mail Server">
+					<dataObject class="java.lang.String" ><![CDATA[smtp.wachovia.net]]></dataObject>
+				</dataElement>
+				<dataElement name="Content">
+					<dataObject class="java.lang.String" ><![CDATA[${Internal.Agent Name} ${numConnects} has reached the limit.]]></dataObject>
+				</dataElement>
+				<properties>
+				</properties>
+				<performOnceOnly/>
+				<escalationTime>0</escalationTime>
+			</consequenceAction>
+			<trueConditionPolicy>
+				<trueCountThreshold>1</trueCountThreshold>
+			</trueConditionPolicy>
+			<clearOn>
+				<clearOnFirstFalse/>
+			</clearOn>
+		</test>
+	</rule>
+</ruleBase>

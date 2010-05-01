@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rendezvous url="http://cib-drrv01.usa.wachovia.net:27580">
+  <configuration timestamp="20061204114828-0500">
+    <rvrd-parameters>
+      <logging connections="no" subject-data="no" subject-interest="no" />
+      <router maximum-backlog="0" name="cib-drrv01-openlink">
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-drrv01" local-port="60011" neighbor-name="cib-prv1wac01-openlink" remote-host="cib-prv1wac01" remote-port="10011" type="ACTIVE" />
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-drrv01" local-port="60011" neighbor-name="cib-prv1wac02-openlink" remote-host="cib-prv1wac02" remote-port="10021" type="ACTIVE" />
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-drrv01" local-port="60011" neighbor-name="cib-prodrv02-openlink" remote-host="cib-prodrv02" remote-port="50021" type="ACTIVE" />
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-drrv01" local-port="60011" neighbor-name="cib-prodrv01-openlink" remote-host="cib-prodrv01" remote-port="50011" type="ACTIVE" />
+        <local-network cost="1" name="drrv-wecsas-openlink" network=";239.255.254.1" service="27503">
+          <import subject="*.endur.&gt;" weight="10" />
+          <import subject="_RVCM.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+        </local-network>
+      </router>
+      <router maximum-backlog="0" name="cib-router2">
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-drrv01" local-port="60011" neighbor-name="cib-prv1wac" remote-host="1" remote-port="10011" type="ACTIVE" />
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-drrv01" local-port="60011" neighbor-name="cib-prv1wa-" remote-host="2" remote-port="10021" type="ACTIVE" />
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-drrv01" local-port="60011" neighbor-name="cib-prodrv" remote-host="2" remote-port="50021" type="ACTIVE" />
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-drrv01" local-port="60011" neighbor-name="cib-prodrv0" remote-host="1" remote-port="50011" type="ACTIVE" />
+        <local-network cost="1" name="drrv-asdf" network=";239.255.254.1" service="2750">
+          <import subject="*.endur.&gt;" weight="10" />
+          <import subject="_RVCM.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+        </local-network>
+      </router>
+    </rvrd-parameters>
+  </configuration>
+</rendezvous>

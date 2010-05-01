@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rendezvous SYSTEM "http://www.rv.tibco.com/dtd/rv">
+<rendezvous url="http://cib-rrvmccr01.usa.wachovia.net:27580">
+  <configuration timestamp="20070904135043-0400">
+    <rvrd-parameters>
+      <logging connections="no" subject-data="no" subject-interest="no" />
+      <router maximum-backlog="0" name="rrvmccr01-spanklin">
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-rrvmccr01" local-port="20022" neighbor-name="rrvnypp01-spanklin" remote-host="cib-rrvnypp01" remote-port="30022" type="ACTIVE" />
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-rrvmccr01" local-port="20022" neighbor-name="rrvnboc01-spanklin" remote-host="cib-rrvnboc01" remote-port="30012" type="ACTIVE" />
+        <local-network cost="1" name="clt-uas-37505" network=";239.255.254.2" service="37505">
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <import subject="_RVCM.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+        <local-network cost="1" name="clt-uas-37504" network=";239.255.254.2" service="37504">
+          <import subject="_RVCM.&gt;" weight="10" />
+          <import subject="cib.wcm.fi.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+          <export subject="cib.wcm.fi.&gt;" />
+        </local-network>
+      </router>
+    </rvrd-parameters>
+    <security-parameters>
+      <administrator password="!!!SECRET!!!" username="rvadmin" />
+      <certificate index="1" private-key-password="!!! SECRET !!!">
+        <use for="HTTPS" />
+        <use for="ROUTERS_TO_ROUTERS" />
+        <PEM-data>
+          -----BEGIN CERTIFICATE-----
+          MIIC7TCCAlagAwIBAgIBATANBgkqhkiG9w0BAQQFADB4MQswCQYDVQQGEwJOQTEL
+          MAkGA1UECBMCTkExCzAJBgNVBAcTAk5BMRIwEAYDVQQKEwlBbm9ueW1vdXMxEjAQ
+          BgNVBAsTCUFub255bW91czEnMCUGA1UEAxMeY2liLXJydm1jY3IwMS51c2Eud2Fj
+          aG92aWEubmV0MB4XDTA2MDcxODE5NTYyM1oXDTA3MDcxODE5NTYyM1oweDELMAkG
+          A1UEBhMCTkExCzAJBgNVBAgTAk5BMQswCQYDVQQHEwJOQTESMBAGA1UEChMJQW5v
+          bnltb3VzMRIwEAYDVQQLEwlBbm9ueW1vdXMxJzAlBgNVBAMTHmNpYi1ycnZtY2Ny
+          MDEudXNhLndhY2hvdmlhLm5ldDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA
+          r90QP0Cb8kdAT+E3y4JYsk96/HrhfE1F9p8vjUUqRKIzqqIUPiZcNe7Ztw7iO04c
+          rXNR+ZLb3Jd2NM0y507yCFPKps7v9s4MhtpXCx9VbcbSOAG2c/y2qH6xxY8xXLaM
+          /rMgGEanoFXKhHm8SMBT5Q8Q1iuLl3LC8M0QZHlrdssCAwEAAaOBhjCBgzARBglg
+          hkgBhvhCAQEEBAMCAkQwCwYDVR0PBAQDAgLsMBMGA1UdJQQMMAoGCCsGAQUFBwMB
+          MB0GA1UdDgQWBBRklqdEBsBrzT1aa/x726w+sRqT1zAfBgNVHSMEGDAWgBRklqdE
+          BsBrzT1aa/x726w+sRqT1zAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBAUAA4GB
+          AIftoqA72EVcbI7kQLCTSQb5o1paslVIi1wl9aJwNbEw7nP1hhf6BiPnVDRJ676z
+          T+5F1wQm8cZNegboe/HK1leGYYLHXjHzhKA18FdPeZSLM0BC8o+V07choTENt6/s
+          O70cSOx4HeJjwdqKIQmco8bQUMeK/c+IGiMUgq3zlOtU
+          -----END CERTIFICATE-----
+          !!! SECRET PRIVATE KEY !!!
+        </PEM-data>
+      </certificate>
+      <certificate index="2" />
+      <certificate index="3" />
+      <certificate index="4" />
+    </security-parameters>
+  </configuration>
+</rendezvous>

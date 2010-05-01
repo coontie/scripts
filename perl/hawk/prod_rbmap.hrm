@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RuleBaseMap>
+	<Class tag="RulebaseMap" javaClass="COM.TIBCO.hawk.config.rbengine.rbmap.impl.RulebaseMap" />
+	<Name><![CDATA[rbmap]]></Name>
+	<Version>4.1.0</Version>
+	<Properties>
+		<Author><![CDATA[tibcoems on host cib-devemsmessaging01(162.111.22.248) at 11:11 Mon, Aug 14, 2006]]></Author>
+		<LastModification><![CDATA[a485029 on host WACHOVIA-D1V4M4(114.19.4.149) at 14:27 Sat, May 12, 2007]]></LastModification>
+		<Comment><![CDATA[]]></Comment>
+		<Custom>false</Custom>
+		<UseGroupCommand>true</UseGroupCommand>
+		<CustomAndMap>true</CustomAndMap>
+		<Script></Script>
+	</Properties>
+	<Hosts>
+		<Host Name="cib-calypsorate1" >
+			<RuleBase Name="ems_primary_calypso" />
+		</Host>
+		<Host Name="cib-calypsorate2" >
+			<RuleBase Name="ems_primary_calypso" />
+		</Host>
+		<Host Name="cib-calypsosp1" >
+			<RuleBase Name="ems_primary_calypso" />
+		</Host>
+		<Host Name="cib-calypsosp2" >
+			<RuleBase Name="ems_primary_calypso" />
+		</Host>
+		<Host Name="cib-devems01" >
+			<RuleBase Name="dev_ems_itd_custom" />
+			<RuleBase Name="ldap_master_slave" />
+			<RuleBase Name="ems_secondary" />
+			<RuleBase Name="ems_primary" />
+		</Host>
+		<Host Name="cib-devems02" >
+			<RuleBase Name="ldap_stand_alone" />
+			<RuleBase Name="ems_secondary" />
+			<RuleBase Name="ems_primary" />
+		</Host>
+		<Host Name="cib-devems03" >
+			<RuleBase Name="ems_secondary" />
+			<RuleBase Name="ems_primary" />
+		</Host>
+		<Host Name="cib-devems04" >
+			<RuleBase Name="ems_secondary" />
+			<RuleBase Name="ems_primary" />
+		</Host>
+		<Host Name="cib-devems05" >
+			<RuleBase Name="devems05_ems_base" />
+		</Host>
+		<Host Name="cib-devrv01" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-devrv02" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-drems05" >
+			<RuleBase Name="drems05_ems_base" />
+		</Host>
+		<Host Name="cib-drems06" >
+			<RuleBase Name="drems06_ems_base" />
+		</Host>
+		<Host Name="cib-fanout1" >
+			<RuleBase Name="ems_primary" />
+		</Host>
+		<Host Name="cib-fanout2" >
+			<RuleBase Name="ems_primary" />
+		</Host>
+		<Host Name="cib-pemssbld01" >
+			<RuleBase Name="ems_secondary" />
+			<RuleBase Name="ems_primary" />
+		</Host>
+		<Host Name="cib-pemssbld02" >
+			<RuleBase Name="ems_secondary" />
+			<RuleBase Name="ems_primary" />
+		</Host>
+		<Host Name="cib-prodems01" >
+			<RuleBase Name="prodems01_ems_itd_custom" />
+			<RuleBase Name="ldap_master_slave" />
+			<RuleBase Name="ems_secondary" />
+			<RuleBase Name="ems_primary" />
+		</Host>
+		<Host Name="cib-prodems02" >
+			<RuleBase Name="prodems01_ems_itd_custom" />
+			<RuleBase Name="ldap_stand_alone" />
+			<RuleBase Name="ems_secondary" />
+			<RuleBase Name="ems_primary" />
+			<RuleBase Name="ems_custom_1psr_prod" />
+		</Host>
+		<Host Name="cib-prodems03" >
+			<RuleBase Name="hawk_event_agent_monitor_ems_dev" />
+			<RuleBase Name="hawk_event_agent_monitor_ems_uat" />
+			<RuleBase Name="hawk_event_agent_monitor_rv_dev" />
+			<RuleBase Name="hawk_event_agent_monitor_rv_prod" />
+			<RuleBase Name="hawk_event_agent_monitor_rv_uat" />
+			<RuleBase Name="ems_secondary" />
+			<RuleBase Name="ems_primary" />
+			<RuleBase Name="hawk_event_agent_monitor_ems_prod" />
+		</Host>
+		<Host Name="cib-prodems04" >
+			<RuleBase Name="hawk_event_agent_monitor_ems_dev" />
+			<RuleBase Name="hawk_event_agent_monitor_ems_uat" />
+			<RuleBase Name="hawk_event_agent_monitor_rv_dev" />
+			<RuleBase Name="hawk_event_agent_monitor_rv_prod" />
+			<RuleBase Name="hawk_event_agent_monitor_rv_uat" />
+			<RuleBase Name="ems_secondary" />
+			<RuleBase Name="ems_primary" />
+			<RuleBase Name="hawk_event_agent_monitor_ems_prod" />
+		</Host>
+		<Host Name="cib-prodems05" >
+			<RuleBase Name="prodems05_ems_base" />
+			<RuleBase Name="prodems05_ems_custom" />
+		</Host>
+		<Host Name="cib-prodems06" >
+			<RuleBase Name="prodems06_ems_base" />
+			<RuleBase Name="prodems06_ems_custom" />
+		</Host>
+		<Host Name="cib-prodrv01" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-prodrv02" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-prv1wac01" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-prv1wac02" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-prvsbld01" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-prvsbld02" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-prvsbld03" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-prvsbld04" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-rrvduc01" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-rrvmccr01" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-rrvnboc01" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-rrvnypp01" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-rrvplz01" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-tmsp03" >
+			<RuleBase Name="ems_primary" />
+		</Host>
+		<Host Name="cib-tmsp04" >
+			<RuleBase Name="ems_primary" />
+		</Host>
+		<Host Name="cib-uatems01" >
+			<RuleBase Name="ldap_master_slave" />
+			<RuleBase Name="ems_secondary" />
+			<RuleBase Name="ems_primary" />
+		</Host>
+		<Host Name="cib-uatems02" >
+			<RuleBase Name="ldap_stand_alone" />
+			<RuleBase Name="ems_secondary" />
+			<RuleBase Name="ems_primary" />
+			<RuleBase Name="ems_custom_1psr_uat" />
+		</Host>
+		<Host Name="cib-uatems05" >
+			<RuleBase Name="uatems05_ems_base" />
+		</Host>
+		<Host Name="cib-uatrv01" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-uatrv02" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-uemssbld01" >
+			<RuleBase Name="uemssbld01_ems_base" />
+			<RuleBase Name="uemssbld02_ems_base" />
+		</Host>
+		<Host Name="cib-uemssbld02" >
+			<RuleBase Name="uemssbld01_ems_base" />
+			<RuleBase Name="uemssbld02_ems_base" />
+		</Host>
+		<Host Name="cib-urv1wac01" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-urv1wac02" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-urvsbld01" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-urvsbld02" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-urvsbld03" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+		<Host Name="cib-urvsbld04" >
+			<RuleBase Name="shared_rvrd_base" />
+		</Host>
+	</Hosts>
+	<Groups>
+	</Groups>
+	<RuleBases>
+		<RuleBase Name="dev_ems_itd_custom" >
+			<Member>cib-devems01</Member>
+		</RuleBase>
+		<RuleBase Name="devems05_ems_base" >
+			<Member>cib-devems05</Member>
+		</RuleBase>
+		<RuleBase Name="drems05_ems_base" >
+			<Member>cib-drems05</Member>
+		</RuleBase>
+		<RuleBase Name="drems06_ems_base" >
+			<Member>cib-drems06</Member>
+		</RuleBase>
+		<RuleBase Name="ems_custom_1psr_prod" >
+			<Member>cib-prodems02</Member>
+		</RuleBase>
+		<RuleBase Name="ems_custom_1psr_uat" >
+			<Member>cib-uatems02</Member>
+		</RuleBase>
+		<RuleBase Name="ems_primary" >
+			<Member>cib-devems01</Member>
+			<Member>cib-devems02</Member>
+			<Member>cib-devems03</Member>
+			<Member>cib-devems04</Member>
+			<Member>cib-fanout1</Member>
+			<Member>cib-fanout2</Member>
+			<Member>cib-pemssbld01</Member>
+			<Member>cib-pemssbld02</Member>
+			<Member>cib-prodems01</Member>
+			<Member>cib-prodems02</Member>
+			<Member>cib-prodems03</Member>
+			<Member>cib-prodems04</Member>
+			<Member>cib-tmsp03</Member>
+			<Member>cib-tmsp04</Member>
+			<Member>cib-uatems01</Member>
+			<Member>cib-uatems02</Member>
+		</RuleBase>
+		<RuleBase Name="ems_primary_calypso" >
+			<Member>cib-calypsorate1</Member>
+			<Member>cib-calypsorate2</Member>
+			<Member>cib-calypsosp1</Member>
+			<Member>cib-calypsosp2</Member>
+		</RuleBase>
+		<RuleBase Name="ems_secondary" >
+			<Member>cib-devems01</Member>
+			<Member>cib-devems02</Member>
+			<Member>cib-devems03</Member>
+			<Member>cib-devems04</Member>
+			<Member>cib-pemssbld01</Member>
+			<Member>cib-pemssbld02</Member>
+			<Member>cib-prodems01</Member>
+			<Member>cib-prodems02</Member>
+			<Member>cib-prodems03</Member>
+			<Member>cib-prodems04</Member>
+			<Member>cib-uatems01</Member>
+			<Member>cib-uatems02</Member>
+		</RuleBase>
+		<RuleBase Name="hawk_event_agent_monitor_ems_dev" >
+			<Member>cib-prodems03</Member>
+			<Member>cib-prodems04</Member>
+		</RuleBase>
+		<RuleBase Name="hawk_event_agent_monitor_ems_prod" >
+			<Member>cib-prodems03</Member>
+			<Member>cib-prodems04</Member>
+		</RuleBase>
+		<RuleBase Name="hawk_event_agent_monitor_ems_uat" >
+			<Member>cib-prodems03</Member>
+			<Member>cib-prodems04</Member>
+		</RuleBase>
+		<RuleBase Name="hawk_event_agent_monitor_rv_dev" >
+			<Member>cib-prodems03</Member>
+			<Member>cib-prodems04</Member>
+		</RuleBase>
+		<RuleBase Name="hawk_event_agent_monitor_rv_prod" >
+			<Member>cib-prodems03</Member>
+			<Member>cib-prodems04</Member>
+		</RuleBase>
+		<RuleBase Name="hawk_event_agent_monitor_rv_uat" >
+			<Member>cib-prodems03</Member>
+			<Member>cib-prodems04</Member>
+		</RuleBase>
+		<RuleBase Name="ldap_master_slave" >
+			<Member>cib-devems01</Member>
+			<Member>cib-prodems01</Member>
+			<Member>cib-uatems01</Member>
+		</RuleBase>
+		<RuleBase Name="ldap_stand_alone" >
+			<Member>cib-devems02</Member>
+			<Member>cib-prodems02</Member>
+			<Member>cib-uatems02</Member>
+		</RuleBase>
+		<RuleBase Name="prodems01_ems_itd_custom" >
+			<Member>cib-prodems01</Member>
+			<Member>cib-prodems02</Member>
+		</RuleBase>
+		<RuleBase Name="prodems05_ems_base" >
+			<Member>cib-prodems05</Member>
+		</RuleBase>
+		<RuleBase Name="prodems05_ems_custom" >
+			<Member>cib-prodems05</Member>
+		</RuleBase>
+		<RuleBase Name="prodems06_ems_base" >
+			<Member>cib-prodems06</Member>
+		</RuleBase>
+		<RuleBase Name="prodems06_ems_custom" >
+			<Member>cib-prodems06</Member>
+		</RuleBase>
+		<RuleBase Name="shared_rvrd_base" >
+			<Member>cib-devrv01</Member>
+			<Member>cib-devrv02</Member>
+			<Member>cib-prodrv01</Member>
+			<Member>cib-prodrv02</Member>
+			<Member>cib-prv1wac01</Member>
+			<Member>cib-prv1wac02</Member>
+			<Member>cib-prvsbld01</Member>
+			<Member>cib-prvsbld02</Member>
+			<Member>cib-prvsbld03</Member>
+			<Member>cib-prvsbld04</Member>
+			<Member>cib-rrvduc01</Member>
+			<Member>cib-rrvmccr01</Member>
+			<Member>cib-rrvnboc01</Member>
+			<Member>cib-rrvnypp01</Member>
+			<Member>cib-rrvplz01</Member>
+			<Member>cib-uatrv01</Member>
+			<Member>cib-uatrv02</Member>
+			<Member>cib-urv1wac01</Member>
+			<Member>cib-urv1wac02</Member>
+			<Member>cib-urvsbld01</Member>
+			<Member>cib-urvsbld02</Member>
+			<Member>cib-urvsbld03</Member>
+			<Member>cib-urvsbld04</Member>
+		</RuleBase>
+		<RuleBase Name="uatems05_ems_base" >
+			<Member>cib-uatems05</Member>
+		</RuleBase>
+		<RuleBase Name="uemssbld01_ems_base" >
+			<Member>cib-uemssbld01</Member>
+			<Member>cib-uemssbld02</Member>
+		</RuleBase>
+		<RuleBase Name="uemssbld02_ems_base" >
+			<Member>cib-uemssbld01</Member>
+			<Member>cib-uemssbld02</Member>
+		</RuleBase>
+	</RuleBases>
+	<Commands>
+	</Commands>
+</RuleBaseMap>

@@ -1,0 +1,30 @@
+Title: Create Distribution Profile
+Actors:
+	Master Account Administrator
+	DDC System
+	DDC Ops User
+Activities:
+	Activity #1  
+	Activity #2 User opts to create a new distribution profile 
+	Activity #3 Display Partner Search Screen 
+	Activity #4 Enter Search Parameters 
+	Activity #5 Search for Partners 
+	Activity #6 Search Yielded results ? 
+	Activity #7 Display Search Results 
+	Activity #8 User selects Partner 
+	Activity #9 Distribution Profile already exist ? 
+	Activity #10 Display Create New Distribution Profile Screen 
+	Activity #11 User Enters Profile Name and Description 
+	Activity #12 Add more fields to schema ? 
+	Activity #13 Request addition of fields to schema 
+	Activity #14 Enter Inbound and Outbound File Location and data map sepcifications 
+	Activity #15 Update the Schema 
+	Activity #16 Save Distribution Profile 
+	Activity #17 Save the Distribution Profile and associate it with the Master Account 
+	Activity #18 Send Notification 
+	Activity #19  
+	Activity #20 Add fields to Schema 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

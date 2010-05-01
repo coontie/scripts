@@ -1,0 +1,14 @@
+tcp://cib-devems01:7222
+tcp://cib-devems02:7222
+tcp://cib-uatems01:7222
+tcp://cib-uatems02:7222
+tcp://cib-prodems01:7222
+tcp://cib-prodems02:7222
+tcp://cib-prodems03:7222
+tcp://cib-prodems04:7222
+tcp://cib-prodems05:7222
+tcp://cib-prodems06:7222
+tcp://Cib-calypsorate1:8222
+tcp://Cib-calypsorate2:8222
+tcp://Cib-calypsosp1:8222
+tcp://Cib-calypsosp2:8222

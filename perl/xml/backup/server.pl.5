@@ -1,0 +1,81 @@
+#!/usr/bin/perl -w
+use IO::Socket::Multicast;
+use XML::Parser;
+use XML::SimpleObject;
+use Data::Dumper;
+use threads;
+use threads::shared;
+
+use strict;
+
+my %masterHash : shared;
+
+#for outbound
+use constant DESTINATION => '226.1.1.2:2001'; 
+
+#for inbound
+use constant GROUP => '226.1.1.1';
+use constant PORT  => '2000';
+
+my $socketOut = IO::Socket::Multicast->new(Proto=>'udp',PeerAddr=>DESTINATION);
+my $socketIn = IO::Socket::Multicast->new(Proto=>'udp',LocalPort=>PORT);
+$socketIn->mcast_add(GROUP) || die "Couldn't set group: $!\n";
+$socketOut->mcast_ttl(3);
+
+my $file = 'config.xml';
+my $parser = XML::Parser->new(ErrorContext => 2, Style => "Tree");
+my $xmlobj = XML::SimpleObject->new( $parser->parsefile($file) );
+
+my $publishConfigThread = threads->new(\&publishConfig); # Spawn the thread
+$publishConfigThread->detach; # Now we officially don’t care any more
+
+my $receiveResults = threads->new(\&receiveResults); # Spawn the thread
+$receiveResults->detach; # Now we officially don’t care any more
+
+while (1) {
+	print "\n";
+	#print Dumper(%masterHash);
+	print $masterHash{'cnyp2ps1'}=>{'serverID'};
+	sleep 1;
+}
+
+
+sub receiveResults
+{
+	while (1)
+	{
+		my %cmdHash;
+		my $data = '';
+		$socketIn->recv($data,1024);
+		print "received $data";
+		chomp ($data);
+		my ($destination, $commandType, $value) = "";
+		($destination, $commandType, $value) = ( split (/:/, $data) ) [0,1,2];
+		#print "d is $destination c is $commandType v is $value \n";
+		$cmdHash{$commandType} = $value;
+		#print "cmdhash is " . Dumper(%cmdHash);
+		$masterHash{$destination} = %cmdHash;
+	}
+}
+
+	
+sub publishConfig
+{
+	while (1) {
+
+		#this code traverses the entire config file.
+		foreach my $servers ($xmlobj->child("config")->children("server")) {
+			my $server = $servers->attribute('name');
+			foreach my $command ($servers->children('command')) {
+				my $commandAttribute = $command->attribute('type');
+				my $commandExecValue = $command->child('exec')->value;
+				my $final = "$server:$commandAttribute:$commandExecValue";
+				$socketOut->send($final) || die "Couldn't send: $!";
+			}
+		}
+
+		sleep 1;
+	} #end of while
+
+} #end of publishConfig sub
+

@@ -1,0 +1,17 @@
+<rendezvous url="http://cib-drrv01.usa.wachovia.net:27580">
+	<router name="cib-drrv01-openlink">
+		<local-port port="7501" />
+		<neighbor neighbor-name="cib-prv1wac01-openlink" remote-host="cib-prv1wac01" remote-port="10011" cost="1"/>
+		<neighbor neighbor-name="cib-prv2wac02-openlink" remote-host="cib-prv1wac02" remote-port="10021" cost="10"/>
+		<neighbor neighbor-name="cib-prv1wac03-openlink" remote-host="cib-prv1wac03" remote-port="10031" cost="1"/>
+		<neighbor neighbor-name="cib-prv1wac04-openlink" remote-host="cib-prv1wac04" remote-port="10041" cost="10"/>
+		<local-network name="local-net" network=";239.255.254.1" service="27503">
+			<import subject="_RVCM.&gt;" />
+			<import subject="_RVXM.&gt;" />
+			<import subject="_RVFM.&gt;" />
+			<export subject="_RVCM.&gt;" />
+			<export subject="_RVXM.&gt;" />
+			<export subject="_RVFM.&gt;" />
+		</local-network>
+	</router>
+</rendezvous>

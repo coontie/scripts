@@ -1,0 +1,46 @@
+Title: Update Report Parameters
+Actors:
+	User
+	DDC
+Activities:
+	Activity #1 Log into DDC admin console 
+	Activity #2 Validate user 
+	Activity #3 Start 
+	Activity #4 Validate access 
+	Activity #5 Choose "Update Report Parameters" option 
+	Activity #6 Opt to update report parameters 
+	Activity #7 Present menu of available choices 
+	Activity #8 Present "Update Report Parameters" form 
+	Activity #9 Ask for either standard or customized 
+	Activity #10 Standard or customized? 
+	Activity #11 Search for standard reports 
+	Activity #12 Present list of standard reports 
+	Activity #13 Choose a report 
+	Activity #14 Retrieve specified report 
+	Activity #15 Inquire about the date ranges 
+	Activity #16 Update date ranges? 
+	Activity #17 Present "New Date Ranges" form 
+	Activity #18 Enter new date ranges 
+	Activity #19 Submit new date ranges 
+	Activity #20 Validate submitted ranges 
+	Activity #21 Valid date ranges? 
+	Activity #22 Automatically enter max date ranges 
+	Activity #23 Inquire about run time schedule 
+	Activity #24 Update run time schedule? 
+	Activity #25 Select date ranges 
+	Activity #26 Make a run time schedule choice 
+	Activity #27 Enter new run time schedule 
+	Activity #28 Update run time schedule 
+	Activity #29 Inquire about expiry schedule 
+	Activity #30 Make an expiry schedule choice 
+	Activity #31 Update expiry schedule? 
+	Activity #32 Present "New Expiry Schedule" form 
+	Activity #33 Enter new expiry schedule 
+	Activity #34 Update expiry schedule 
+	Activity #35 Notify user of completion 
+	Activity #36 End 
+	Activity #37 Choose either standard or customized 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

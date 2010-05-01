@@ -1,0 +1,30 @@
+Title: Create Transport Profile
+Actors:
+	Master Account Administrator
+	DDC Ops User
+	DDC System
+Activities:
+	Activity #1 User opts to create a new Transport profile 
+	Activity #2 Enter Inbound and Outbound File Location and data map sepcifications 
+	Activity #3 Enter Search Parameters 
+	Activity #4 User selects Partner 
+	Activity #5 Request addition of fields to schema 
+	Activity #6  
+	Activity #7 Add more fields to schema ? 
+	Activity #8 Save Transport Profile 
+	Activity #9 User Enters Profile Name and Description 
+	Activity #10 Add fields to Schema 
+	Activity #11 Update the Schema 
+	Activity #12 Display Create New Transport Profile Screen 
+	Activity #13 Send Notification 
+	Activity #14 Search for Partners 
+	Activity #15 Transport Profile already exist ? 
+	Activity #16 Save the Transport Profile and associate it with the Master Account 
+	Activity #17 Display Partner Search Screen 
+	Activity #18  
+	Activity #19 Search Yielded results ? 
+	Activity #20 Display Search Results 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

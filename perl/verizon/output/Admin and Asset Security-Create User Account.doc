@@ -1,0 +1,35 @@
+Title: Create User Account
+Actors:
+	User
+	DDC System
+Activities:
+	Activity #1 Start 
+	Activity #2 Opt to create a new account 
+	Activity #3 Check whether master account exists 
+	Activity #4 Master account exists? 
+	Activity #5 Enter required information 
+	Activity #6 Enter optional information 
+	Activity #7 Validate information 
+	Activity #8 Validate user 
+	Activity #9 Validate access 
+	Activity #10 Present menu of available choices 
+	Activity #11 Choose "Create User Account" option 
+	Activity #12 Log into DDC admin console 
+	Activity #13 Present "Create User Account" form 
+	Activity #14  
+	Activity #15 Assign profile to user account 
+	Activity #16 Ask whether timed access is needed 
+	Activity #17 Timed access requried? 
+	Activity #18 Specify timed access 
+	Activity #19 Set timed access 
+	Activity #20 Assign privileges 
+	Activity #21 Save newly created account? 
+	Activity #22 Persist newly created account 
+	Activity #23 Notify originator 
+	Activity #24 Notify DDC ops 
+	Activity #25 Generate a random password 
+	Activity #26 Display password 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

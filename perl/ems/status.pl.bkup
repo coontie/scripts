@@ -1,0 +1,77 @@
+#!/usr/bin/perl -w
+use CGI qw(:standard);
+use HTML::Table;
+
+
+use strict;
+
+my $mainTable = new HTML::Table(-style=>'color: blue');
+
+$mainTable->setBorder(3);
+
+my $fullDate=`date`;
+my $tibemsbin='/opt/tibco/ems/bin/tibemsadmin';
+my $password='Sen4@pp3';
+
+#print header;
+print "<br><b>Wachovia EMS status report.  Generated on $fullDate";
+print "<p>";
+$mainTable->addRow("Environment","Status","Connections","Pending Messages", "Uptime");
+
+open (INFILE, "<./ems_url.list");
+
+while (<INFILE>)
+{
+	chomp;
+	my $url=$_;
+	my $connections = '';
+	my $status = '';
+	my $retValue = '';
+	my $uptime = '';
+	my $pendMessages = '';
+
+	#is the server up?
+	system("$tibemsbin -server $url -user admin -password $password -script ./show.ems > /dev/null");
+
+	if ($? == 0)
+	{
+	#yes it is,
+	#get the uptime first
+	$retValue=`$tibemsbin -server $url -user admin -password $password -script ./show.ems | grep Uptime`;
+	chomp ($retValue);
+
+	#it is the second value
+	my @retValueArray = split (':', $retValue);
+	$uptime = $retValueArray[1];
+
+	#______
+	#let's get the num of pending messages
+	$retValue=`$tibemsbin -server $url -user admin -password $password -script ./show.ems | grep Messages`;
+	chomp ($retValue);
+        #it is the second value
+        @retValueArray = split (':', $retValue);
+        $pendMessages = $retValueArray[1];
+
+
+	#now get the state
+	$retValue=`$tibemsbin -server $url -user admin -password $password -script ./show.ems | grep State`;
+	chomp ($retValue);
+	
+	#it is the second value
+	@retValueArray = split (':', $retValue);
+	$status = $retValueArray[1];
+
+	#lets get the total connections
+	$connections=`$tibemsbin -server $url -user admin -password $password -script ./show.conns.ems | wc -l`;
+	} else
+	{
+		#no it is not up!
+		$status = "DOWN";	
+		$connections = "-";
+		$uptime = "-";
+	}
+
+	$mainTable->addRow($url,$status,$connections,$pendMessages,$uptime);
+}
+$mainTable->print;
+close (INFILE);

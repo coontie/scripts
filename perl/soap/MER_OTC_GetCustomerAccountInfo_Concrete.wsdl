@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by TIBCO WSDL-->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://xmlns.example.com/1207584928671" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns0="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema.xsd" xmlns:ns1="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema1.xsd" xmlns:ns2="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema.xsd2" xmlns:ns3="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema8.xsd" xmlns:ns4="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema9.xsd" xmlns:ns5="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema10.xsd" xmlns:ns6="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema11.xsd" xmlns:ns7="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema.xsd4" xmlns:ns8="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema.xsd5" xmlns:ns9="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema6.xsd" xmlns:ns10="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema7.xsd" xmlns:ns11="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema2.xsd" xmlns:ns12="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema3.xsd" xmlns:ns13="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema.xsd6" xmlns:ns14="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema1.xsd2" xmlns:ns15="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema4.xsd" xmlns:ns16="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema5.xsd" name="Untitled" targetNamespace="http://xmlns.example.com/1207584928671">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema.xsd4" targetNamespace="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema.xsd4" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Fetch_Customer_ID_Input_Root">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Customer_Account_Number" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema10.xsd" targetNamespace="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema10.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Payment_Details_Input_Root">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns5:Payment_Details_Input_Row"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Payment_Details_Input_Row">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Customer_Id" type="xs:string"/>
+                        <xs:element name="Payment_Number" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Payment_Details_Flag" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Invoice_Number" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema11.xsd" targetNamespace="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema11.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Payment_Details_Output_LineItems_Row">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Payment_Number" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Type" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Orignal_Amount" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Amount_Due" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Amount_Applied" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Date_Applied" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Status" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Invoice_Number" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Payment_Details_Output_Root">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns6:Payment_Details_Output_Row" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Status_Id" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Status_Text" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Payment_Details_Output_Row">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Payment_Number" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Payment_Amount" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Applied_Amount" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Receipt_Date" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Due_Date" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Unapplied_Amount" type="xs:string" minOccurs="0"/>
+                        <xs:element ref="ns6:Payment_Details_Output_LineItems_Row" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema5.xsd" targetNamespace="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema5.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Payment_Status_Output_Root">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns16:Payment_Status_Output_Row" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Status_Id" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Status_Text" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Payment_Status_Output_Row">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Payment_Number" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Receipt_Date" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Payment_Amount" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Unapplied_Amount" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Due_Date" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema1.xsd" targetNamespace="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema1.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Order_Status_Output_Root">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns1:Order_Status_Output_Row" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Status_Id" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Status_Text" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Order_Status_Output_Row">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Web_Confirm_Number" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Customer_ID" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Order_Number" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Date_Ordered" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Order_Status" type="xs:string" minOccurs="0"/>
+                        <xs:element name="PO_Number" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Order_Total" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema7.xsd" targetNamespace="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema7.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Order_Details_Output_LineItems_Row">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Line" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Product" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Product_Description" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Quantity" type="xs:string" minOccurs="0"/>
+                        <xs:element name="UOM" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Status" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Payment_Terms" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Unit_Price" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Total_Price" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Order_Details_Output_Root">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns10:Order_Details_Output_Row" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Status_Id" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Status_Text" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Order_Details_Output_Row">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Order_Number" type="xs:string" minOccurs="0"/>
+                        <xs:element name="PO_Number" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Customer_Name" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Line_Total" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Total_Charges" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Tax_Total" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Order_Total" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Order_Status" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Tracking_Numbers" type="xs:string" minOccurs="0"/>
+                        <xs:element name="ShippingAddress_Line1" type="xs:string" minOccurs="0"/>
+                        <xs:element name="ShippingAddress_Line2" type="xs:string" minOccurs="0"/>
+                        <xs:element name="ShippingAddress_Line3" type="xs:string" minOccurs="0"/>
+                        <xs:element name="BillingAddress_Line1" type="xs:string" minOccurs="0"/>
+                        <xs:element name="BillingAddress_Line2" type="xs:string" minOccurs="0"/>
+                        <xs:element name="BillingAddress_Line3" type="xs:string" minOccurs="0"/>
+                        <xs:element ref="ns10:Order_Details_Output_LineItems_Row" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema2.xsd" targetNamespace="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema2.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Invoice_Status_Input_Root">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns11:Invoice_Status_Input_Row"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Invoice_Status_Input_Row">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Customer_Id" type="xs:string"/>
+                        <xs:element name="Start_Date" type="xs:string" minOccurs="0"/>
+                        <xs:element name="End_Date" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema.xsd" targetNamespace="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Order_Status_Input_Root">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns0:Order_Status_Input_Row"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Order_Status_Input_Row">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Web_Confirm_Number" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Customer_Id" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Start_Date" type="xs:string" minOccurs="0"/>
+                        <xs:element name="End_Date" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema9.xsd" targetNamespace="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema9.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Invoice_Details_Output_LineItem_Row">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Line_Number" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Product" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Product_Description" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Quantity" type="xs:string" minOccurs="0"/>
+                        <xs:element name="UOM" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Selling_Price" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Total_Tax" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Total_Price" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Invoice_Details_Output_Root">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns4:Invoice_Details_Output_Row" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Status_Id" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Status_Text" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Invoice_Details_Output_Row">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Invoice_Number" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Invoice_Date" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Class" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Orignal_Amount" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Amount_Due" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Due_Date" type="xs:string" minOccurs="0"/>
+                        <xs:element name="PO_Number" type="xs:string" minOccurs="0"/>
+                        <xs:element ref="ns4:Invoice_Details_Output_LineItem_Row" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema6.xsd" targetNamespace="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema6.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Order_Details_Input_Root">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns9:Order_Details_Input_Row"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Order_Details_Input_Row">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Customer_Id" type="xs:string"/>
+                        <xs:element name="Order_number" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema.xsd5" targetNamespace="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema.xsd5" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Fetch_Customer_ID_Output_Root">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns8:Fetch_Customer_ID_Output_Row" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Status_Id" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Status_Text" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Fetch_Customer_ID_Output_Row">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Customer_ID" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema8.xsd" targetNamespace="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema8.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Invoice_Details_Input_Root">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns3:Invoice_Details_Input_Row"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Invoice_Details_Input_Row">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Customer_ID" type="xs:string"/>
+                        <xs:element name="Invoice_Number" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema.xsd2" targetNamespace="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema.xsd2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Fault_Root">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Status_Code" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Status_Text" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema1.xsd2" targetNamespace="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema1.xsd2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Fetch_Invoices_Output_Root">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns14:Fetch_Invoices_Output_Row" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Status_Id" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Status_Text" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Fetch_Invoices_Output_Row">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Invoices" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema3.xsd" targetNamespace="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema3.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Invoice_Status_Output_Root">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns12:Invoice_Status_Output_Row" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Status_Id" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Status_Text" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Invoice_Status_Output_Row">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Invoice_Number" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Invoice_Date" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Class" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Orignal_Amount" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Amount_Due" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Due_Date" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Order_Number" type="xs:string" minOccurs="0"/>
+                        <xs:element name="PO_Number" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Applied_Amount" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Payment_Details_Flag" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema.xsd6" targetNamespace="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema.xsd6" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Fetch_Invoices_Input_Root">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Order_Number" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema4.xsd" targetNamespace="http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema4.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Payment_Status_Input_Root">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns15:Payment_Status_Input_Row"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Payment_Status_Input_Row">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Customer_Id" type="xs:string"/>
+                        <xs:element name="Start_Date" type="xs:string" minOccurs="0"/>
+                        <xs:element name="End_Date" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:service name="MER_OTC_GetCustomerAccountInfo-service">
+        <wsdl:port name="GetCustomerAccountInfo_DBResponseEndpoint0" binding="tns:GetCustomerAccountInfo_DBResponseEndpoint0Binding">
+            <soap:address location="http://am-usa01-tst11:1881/BusinessProcesses/INT-014/MER_OTC_GetCustomerAccountInfo_Main/MER_OTC_GetCustomerAccountInfo-service0.serviceagent/GetCustomerAccountInfo_DBResponseEndpoint0"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="GetCustomerAccountInfo_DBResponse">
+        <wsdl:operation name="Order_Status">
+            <wsdl:input message="tns:Order_Status_Input"/>
+            <wsdl:output message="tns:Order_Status_Output"/>
+            <wsdl:fault name="fault1" message="tns:Fault"/>
+        </wsdl:operation>
+        <wsdl:operation name="Invoice_Details">
+            <wsdl:input message="tns:Invoice_Details_Input"/>
+            <wsdl:output message="tns:Invoice_Details_Output"/>
+            <wsdl:fault name="fault1" message="tns:Fault"/>
+        </wsdl:operation>
+        <wsdl:operation name="Payment_Details">
+            <wsdl:input message="tns:Payment_Details_Input"/>
+            <wsdl:output message="tns:Payment_Details_Output"/>
+            <wsdl:fault name="fault1" message="tns:Fault"/>
+        </wsdl:operation>
+        <wsdl:operation name="Fetch_Customer_ID">
+            <wsdl:input message="tns:Fetch_Customer_ID_Input"/>
+            <wsdl:output message="tns:Fetch_Customer_ID_Output"/>
+            <wsdl:fault name="fault1" message="tns:Fault"/>
+        </wsdl:operation>
+        <wsdl:operation name="Order_Details">
+            <wsdl:input message="tns:Order_Details_Input"/>
+            <wsdl:output message="tns:Order_Details_Output"/>
+            <wsdl:fault name="fault1" message="tns:Fault"/>
+        </wsdl:operation>
+        <wsdl:operation name="Invoice_Status">
+            <wsdl:input message="tns:Invoice_Status_Input"/>
+            <wsdl:output message="tns:Invoice_Status_Output"/>
+            <wsdl:fault name="fault1" message="tns:Fault"/>
+        </wsdl:operation>
+        <wsdl:operation name="Fetch_Invoices">
+            <wsdl:input message="tns:Fetch_Invoices_Input"/>
+            <wsdl:output message="tns:Fetch_Invoices_Output"/>
+            <wsdl:fault name="fault1" message="tns:Fault"/>
+        </wsdl:operation>
+        <wsdl:operation name="Payment_Status">
+            <wsdl:input message="tns:Payment_Status_Input"/>
+            <wsdl:output message="tns:Payment_Status_Output"/>
+            <wsdl:fault name="fault1" message="tns:Fault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="GetCustomerAccountInfo_DBResponseEndpoint0Binding" type="tns:GetCustomerAccountInfo_DBResponse">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Order_Status">
+            <soap:operation style="document" soapAction="/BusinessProcesses/INT-014/MER_OTC_GetCustomerAccountInfo_Main/MER_OTC_GetCustomerAccountInfo-service0.serviceagent/GetCustomerAccountInfo_DBResponseEndpoint0/Order_Status"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="Order_Status_Input"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="Order_Status_Output"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="Invoice_Details">
+            <soap:operation style="document" soapAction="/BusinessProcesses/INT-014/MER_OTC_GetCustomerAccountInfo_Main/MER_OTC_GetCustomerAccountInfo-service0.serviceagent/GetCustomerAccountInfo_DBResponseEndpoint0/Invoice_Details"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="Invoice_Details_Input"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="Invoice_Details_Output"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="Payment_Details">
+            <soap:operation style="document" soapAction="/BusinessProcesses/INT-014/MER_OTC_GetCustomerAccountInfo_Main/MER_OTC_GetCustomerAccountInfo-service0.serviceagent/GetCustomerAccountInfo_DBResponseEndpoint0/Payment_Details"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="Payment_Details_Input"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="Payment_Details_Output"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="Fetch_Customer_ID">
+            <soap:operation style="document" soapAction="/BusinessProcesses/INT-014/MER_OTC_GetCustomerAccountInfo_Main/MER_OTC_GetCustomerAccountInfo-service.serviceagent//Fetch_Customer_ID"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="Fetch_Customer_ID_Input"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="Fetch_Customer_ID_Output"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="Order_Details">
+            <soap:operation style="document" soapAction="/BusinessProcesses/INT-014/MER_OTC_GetCustomerAccountInfo_Main/MER_OTC_GetCustomerAccountInfo-service0.serviceagent/GetCustomerAccountInfo_DBResponseEndpoint0/Order_Details"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="Order_Details_Input"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="Order_Details_Output"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="Invoice_Status">
+            <soap:operation style="document" soapAction="/BusinessProcesses/INT-014/MER_OTC_GetCustomerAccountInfo_Main/MER_OTC_GetCustomerAccountInfo-service0.serviceagent/GetCustomerAccountInfo_DBResponseEndpoint0/Invoice_Status"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="Invoice_Status_Input"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="Invoice_Status_Output"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="Fetch_Invoices">
+            <soap:operation style="document" soapAction="/BusinessProcesses/INT-014/MER_OTC_GetCustomerAccountInfo_Main/MER_OTC_GetCustomerAccountInfo-service.serviceagent/GetCustomerAccountInfo_DBResponseEndpoint0/Fetch_Invoices"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="Fetch_Invoices_Input"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="Fetch_Invoices_Output"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="Payment_Status">
+            <soap:operation style="document" soapAction="/BusinessProcesses/INT-014/MER_OTC_GetCustomerAccountInfo_Main/MER_OTC_GetCustomerAccountInfo-service0.serviceagent/GetCustomerAccountInfo_DBResponseEndpoint0/Payment_Status"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="Payment_Status_Input"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="Payment_Status_Output"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="Order_Status_Input">
+        <wsdl:part name="Order_Status_Input" element="ns0:Order_Status_Input_Root"/>
+    </wsdl:message>
+    <wsdl:message name="Order_Status_Output">
+        <wsdl:part name="Order_Status_Output" element="ns1:Order_Status_Output_Root"/>
+    </wsdl:message>
+    <wsdl:message name="Fault">
+        <wsdl:part name="Fault" element="ns2:Fault_Root"/>
+    </wsdl:message>
+    <wsdl:message name="Invoice_Details_Input">
+        <wsdl:part name="Invoice_Details_Input" element="ns3:Invoice_Details_Input_Root"/>
+    </wsdl:message>
+    <wsdl:message name="Invoice_Details_Output">
+        <wsdl:part name="Invoice_Details_Output" element="ns4:Invoice_Details_Output_Root"/>
+    </wsdl:message>
+    <wsdl:message name="Payment_Details_Input">
+        <wsdl:part name="Payment_Details_Input" element="ns5:Payment_Details_Input_Root"/>
+    </wsdl:message>
+    <wsdl:message name="Payment_Details_Output">
+        <wsdl:part name="Payment_Details_Output" element="ns6:Payment_Details_Output_Root"/>
+    </wsdl:message>
+    <wsdl:message name="Fetch_Customer_ID_Input">
+        <wsdl:part name="Fetch_Customer_ID_Input" element="ns7:Fetch_Customer_ID_Input_Root"/>
+    </wsdl:message>
+    <wsdl:message name="Fetch_Customer_ID_Output">
+        <wsdl:part name="Fetch_Customer_ID_Output" element="ns8:Fetch_Customer_ID_Output_Root"/>
+    </wsdl:message>
+    <wsdl:message name="Order_Details_Input">
+        <wsdl:part name="Order_Details_Input" element="ns9:Order_Details_Input_Root"/>
+    </wsdl:message>
+    <wsdl:message name="Order_Details_Output">
+        <wsdl:part name="Order_Details_Output" element="ns10:Order_Details_Output_Root"/>
+    </wsdl:message>
+    <wsdl:message name="Invoice_Status_Input">
+        <wsdl:part name="Invoice_Status_Input" element="ns11:Invoice_Status_Input_Root"/>
+    </wsdl:message>
+    <wsdl:message name="Invoice_Status_Output">
+        <wsdl:part name="Invoice_Status_Output" element="ns12:Invoice_Status_Output_Root"/>
+    </wsdl:message>
+    <wsdl:message name="Fetch_Invoices_Input">
+        <wsdl:part name="Fetch_Invoices_Input" element="ns13:Fetch_Invoices_Input_Root"/>
+    </wsdl:message>
+    <wsdl:message name="Fetch_Invoices_Output">
+        <wsdl:part name="Fetch_Invoices_Output" element="ns14:Fetch_Invoices_Output_Root"/>
+    </wsdl:message>
+    <wsdl:message name="Payment_Status_Input">
+        <wsdl:part name="Payment_Status_Input" element="ns15:Payment_Status_Input_Root"/>
+    </wsdl:message>
+    <wsdl:message name="Payment_Status_Output">
+        <wsdl:part name="Payment_Status_Output" element="ns16:Payment_Status_Output_Root"/>
+    </wsdl:message>
+</wsdl:definitions>

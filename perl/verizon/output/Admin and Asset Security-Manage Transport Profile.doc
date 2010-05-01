@@ -1,0 +1,31 @@
+Title: Manage Transport Profile
+Actors:
+	Master Account Administrator
+	DDC System
+	DDC Ops User
+Activities:
+	Activity #1 Update additional Schema fields ? 
+	Activity #2 Update Profile Name and Description 
+	Activity #3  
+	Activity #4 Enter Search Parameters 
+	Activity #5 Deactivate Transport Profile ? 
+	Activity #6 Request Update Additional Schema Fields 
+	Activity #7 Update inbound,outbound file locations and data map specifications 
+	Activity #8 Save Profile 
+	Activity #9 Select Transport Profile 
+	Activity #10 User opts to manage an existing Transport Profile 
+	Activity #11 Save as New Profile ? 
+	Activity #12 Update Schema Fields 
+	Activity #13 Display Search Results 
+	Activity #14 Search Yielded Results ? 
+	Activity #15 Search Transport Profiles 
+	Activity #16 Delete the Transport Profile 
+	Activity #17 Save Changes to Existing Profile 
+	Activity #18 Display Transport Profile Search Screen 
+	Activity #19 END 
+	Activity #20 Save as a New Transport Profile 
+	Activity #21 Approve Update Schema Fields 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

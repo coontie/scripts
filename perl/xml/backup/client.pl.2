@@ -1,0 +1,41 @@
+#!/usr/bin/perl -w
+use IO::Socket::Multicast;
+use threads;
+use threads::shared;
+use strict;
+
+my $getConfigThread = threads->new(\&getConfig); # Spawn the thread
+
+$getConfigThread->detach; # Now we officially don’t care any more
+
+while (1)
+{
+	#print "a\n";
+	#sleep 1;
+}
+
+sub getConfig
+{
+	#for outbound transmission
+	use constant DESTINATION => '229.55.150.208:2000'; 
+
+	#for inbound receiving
+	use constant GROUP => '239.98.98.10';
+	use constant PORT  => '8900';
+
+	#setup the outbound UDP mcast socket
+	my $socketOut = IO::Socket::Multicast->new(Proto=>'udp',PeerAddr=>DESTINATION);
+
+	#setup the inbound UDP mcast socket
+	my $socketIn = IO::Socket::Multicast->new(Proto=>'udp',LocalPort=>PORT);
+	$socketIn->mcast_add(GROUP) || die "Couldn't set group: $!\n";
+
+	#this blocks until smth has arrived via multicast.  Once that happens, the vars are set
+	#and off we go again, waiting for a transmission
+	while (1) {
+		my $data = '';
+		$socketIn->recv($data,1024);
+		#if ($data eq "OK") { print "GOT IT! \n"; }
+		print "recvd: $data \n";
+	}
+}

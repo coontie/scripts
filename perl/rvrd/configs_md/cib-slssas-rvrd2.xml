@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rendezvous SYSTEM "http://www.rv.tibco.com/dtd/rv">
+<rendezvous url="http://cib-slssas-rvrd2:7580">
+  <configuration timestamp="20070125100506-0500">
+    <rvrd-parameters>
+      <logging connections="no" subject-data="no" subject-interest="no" />
+      <router maximum-backlog="0" name="cib-slssas-rmds02">
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7501" neighbor-name="cib-clt-rmds01" remote-host="cib-clt-rvrd1-l" remote-port="7501" type="ACTIVE" />
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7501" neighbor-name="cib-p375-rmds01" remote-host="cib-p375-rvrd1-l" remote-port="7501" type="ACTIVE" />
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7501" neighbor-name="cib-clt-rmds02" remote-host="cib-clt-rvrd2-l" remote-port="7501" type="ACTIVE" />
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7501" neighbor-name="cib-p375-rmds02" remote-host="cib-p375-rvrd2-l" remote-port="7501" type="ACTIVE" />
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7501" neighbor-name="cib-cltsas-rmds02" remote-host="cib-cltsas-rvrd2" remote-port="7501" type="ACTIVE" />
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7501" neighbor-name="cib-wecsas-rmds01" remote-host="cib-wecsas-rvrd1" remote-port="7501" type="ACTIVE" />
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7501" neighbor-name="cib-cltsas-rmds01" remote-host="cib-cltsas-rvrd1" remote-port="7501" type="ACTIVE" />
+        <local-network cost="1" name="slssas-rmds-9021" network=";239.255.60.20" service="9021">
+          <import subject="DF_OPRA.&gt;" weight="10" />
+          <import subject="HILL.&gt;" weight="10" />
+          <import subject="TULLET.&gt;" weight="10" />
+          <import subject="IDN_SELECTFEED.&gt;" weight="10" />
+          <import subject="GARBAN.&gt;" weight="10" />
+          <import subject="WOMBAT1.&gt;" weight="10" />
+          <import subject="_RVCM.&gt;" weight="10" />
+          <import subject="BR_RECORD.&gt;" weight="10" />
+          <import subject="GLOBALFX.&gt;" weight="10" />
+          <import subject="EUROBROKER.&gt;" weight="10" />
+          <import subject="MATRIX.&gt;" weight="10" />
+          <import subject="_RVCMQ.&gt;" weight="10" />
+          <import subject="PATRIOT.&gt;" weight="10" />
+          <import subject="BR_PAGE.&gt;" weight="10" />
+          <import subject="TRINITY.&gt;" weight="10" />
+          <import subject="LIBERTY.&gt;" weight="10" />
+          <import subject="GFI.&gt;" weight="10" />
+          <import subject="_RVFT.&gt;" weight="10" />
+          <export subject="_RVFT.&gt;" />
+          <export subject="LIBERTY.&gt;" />
+          <export subject="BR_PAGE.&gt;" />
+          <export subject="HILL.&gt;" />
+          <export subject="WOMBAT1.&gt;" />
+          <export subject="GLOBALFX.&gt;" />
+          <export subject="PATRIOT.&gt;" />
+          <export subject="BR_RECORD.&gt;" />
+          <export subject="EUROBROKER.&gt;" />
+          <export subject="DF_OPRA.&gt;" />
+          <export subject="IDN_SELECTFEED.&gt;" />
+          <export subject="TRINITY.&gt;" />
+          <export subject="TULLET.&gt;" />
+          <export subject="GARBAN.&gt;" />
+          <export subject="_RVCM.&gt;" />
+          <export subject="MATRIX.&gt;" />
+          <export subject="GFI.&gt;" />
+          <export subject="_RVCMQ.&gt;" />
+        </local-network>
+      </router>
+      <router maximum-backlog="0" name="cib-slssas-pubsub02">
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7503" neighbor-name="cib-clt-pubsub01" remote-host="cib-clt-rvrd1-l" remote-port="7503" type="ACTIVE" />
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7503" neighbor-name="cib-p375-pubsub02" remote-host="cib-p375-rvrd2-l" remote-port="7503" type="ACTIVE" />
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7503" neighbor-name="cib-p375-pubsub01" remote-host="cib-p375-rvrd1-l" remote-port="7503" type="ACTIVE" />
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7503" neighbor-name="cib-clt-pubsub02" remote-host="cib-clt-rvrd2-l" remote-port="7503" type="ACTIVE" />
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7503" neighbor-name="cib-cltsas-pubsub02" remote-host="cib-cltsas-rvrd2" remote-port="7503" type="ACTIVE" />
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7503" neighbor-name="cib-cltsas-pubsub01" remote-host="cib-cltsas-rvrd1" remote-port="7503" type="ACTIVE" />
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7503" neighbor-name="cib-wecsas-pubsub01" remote-host="cib-wecsas-rvrd1" remote-port="7503" type="ACTIVE" />
+        <local-network cost="1" name="slssas-pubsub-9022" network=";239.255.60.23" service="9022">
+          <import subject="_SASS.TRINITY.&gt;" weight="10" />
+          <import subject="_SASS.GLOBALFX.&gt;" weight="10" />
+          <import subject="_SASS.MATRIX.&gt;" weight="10" />
+          <export subject="_SASS.MATRIX.&gt;" />
+          <export subject="_SASS.TRINTIY.&gt;" />
+          <export subject="_SASS.GLOBALFX.&gt;" />
+        </local-network>
+      </router>
+      <router maximum-backlog="0" name="cib-slssas-hawk02">
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7502" neighbor-name="cib-clt-hawk01" remote-host="cib-clt-rvrd1-l" remote-port="7502" type="ACTIVE" />
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7502" neighbor-name="cib-clt-hawk02" remote-host="cib-clt-rvrd2-l" remote-port="7502" type="ACTIVE" />
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7502" neighbor-name="cib-p375-hawk02" remote-host="cib-p375-rvrd2-l" remote-port="7502" type="ACTIVE" />
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7502" neighbor-name="cib-wecsas-hawk01" remote-host="cib-wecsas-rvrd1" remote-port="7502" type="ACTIVE" />
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7502" neighbor-name="cib-p375-hawk01" remote-host="cib-p375-rvrd1-l" remote-port="7502" type="ACTIVE" />
+        <neighbor compressed="no" cost="10" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7502" neighbor-name="cib-cltsas-hawk01" remote-host="cib-cltsas-rvrd1" remote-port="7502" type="ACTIVE" />
+        <neighbor compressed="no" cost="1" encrypted="no" local-host="cib-slssas-rvrd2" local-port="7502" neighbor-name="cib-cltsas-hawk02" remote-host="cib-cltsas-rvrd2" remote-port="7502" type="ACTIVE" />
+        <local-network cost="1" name="slssas-hawk-17474" network=";239.255.60.21" service="17474">
+          <import subject="_HAWK.&gt;" weight="10" />
+          <export subject="_HAWK.&gt;" />
+        </local-network>
+      </router>
+    </rvrd-parameters>
+    <security-parameters>
+      <administrator password="!!!SECRET!!!" username="Administrator" />
+      <certificate index="1" private-key-password="!!! SECRET !!!">
+        <use for="HTTPS" />
+        <use for="ROUTERS_TO_ROUTERS" />
+        <PEM-data>
+          -----BEGIN CERTIFICATE-----
+          MIIC8zCCAlygAwIBAgIBATANBgkqhkiG9w0BAQQFADB7MQswCQYDVQQGEwJOQTEL
+          MAkGA1UECBMCTkExCzAJBgNVBAcTAk5BMRIwEAYDVQQKEwlBbm9ueW1vdXMxEjAQ
+          BgNVBAsTCUFub255bW91czEqMCgGA1UEAxMhY2liLXNsc3Nhcy1ydnJkMi51c2Eu
+          d2FjaG92aWEubmV0MB4XDTA2MTIxODE4MTcyNVoXDTA3MTIxODE4MTcyNVowezEL
+          MAkGA1UEBhMCTkExCzAJBgNVBAgTAk5BMQswCQYDVQQHEwJOQTESMBAGA1UEChMJ
+          QW5vbnltb3VzMRIwEAYDVQQLEwlBbm9ueW1vdXMxKjAoBgNVBAMTIWNpYi1zbHNz
+          YXMtcnZyZDIudXNhLndhY2hvdmlhLm5ldDCBnzANBgkqhkiG9w0BAQEFAAOBjQAw
+          gYkCgYEA0to0XdccqZCOw24fp8kzuM55sW6+oSXSjtyspW6xnll1rirayjv5XdBW
+          up6Tfn9ZICNcgVqJxJtmEGMChJWQsVI6kSZq+l9a7ibeSa9JvyUFpyhzLU5Du3pl
+          jkgsjIv1I4OI6le4OR1XBIy9EDH5+dsQ9v6qyJYJblDQLyDbhDUCAwEAAaOBhjCB
+          gzARBglghkgBhvhCAQEEBAMCAkQwCwYDVR0PBAQDAgLsMBMGA1UdJQQMMAoGCCsG
+          AQUFBwMBMB0GA1UdDgQWBBSK8UHSHS0HXOmmAvuGG39BUodmXjAfBgNVHSMEGDAW
+          gBSK8UHSHS0HXOmmAvuGG39BUodmXjAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEB
+          BAUAA4GBAMskQC4Ezf3KtmDYkn46iq3IKeyEsJDCucXUVEK8xl1ckMagmKFbj0qk
+          F9jaYDz2/x8EdMRKbBcyvp0x3VAtluVfv4Evlaw3PV3q25OFKPbnih8fYUQzXjQH
+          OracJYVSR4YzoHSlaT4UQ75uFEeEP33bIEby0yvmHuGMDM6pVXKT
+          -----END CERTIFICATE-----
+          !!! SECRET PRIVATE KEY !!!
+        </PEM-data>
+      </certificate>
+      <certificate index="2" />
+      <certificate index="3" />
+      <certificate index="4" />
+    </security-parameters>
+  </configuration>
+</rendezvous>

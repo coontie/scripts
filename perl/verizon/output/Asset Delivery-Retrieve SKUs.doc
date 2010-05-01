@@ -1,0 +1,23 @@
+Title: Retrieve SKUs
+Actors:
+	DDC System
+	DDC Ops
+Activities:
+	Activity #1 Start 
+	Activity #2 Receive asset list 
+	Activity #3 Check for asset presence 
+	Activity #4 Is asset present? 
+	Activity #5 Fetch the asset 
+	Activity #6 Fetch the corresponding encryption key 
+	Activity #7 Decrypt the asset 
+	Activity #8 Get the metadata 
+	Activity #9 More assets? 
+	Activity #10 End 
+	Activity #11 Notify DDC Ops 
+	Activity #12 Attempt error fix 
+	Activity #13 Error fixed? 
+	Activity #14 Notify content provider 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

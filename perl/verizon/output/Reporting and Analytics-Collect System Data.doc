@@ -1,0 +1,19 @@
+Title: Collect System Data
+Actors:
+	SWAN
+	DDC System
+Activities:
+	Activity #1 Start 
+	Activity #2 Get the system list 
+	Activity #3 Connect to system 
+	Activity #4 Extract raw data 
+	Activity #5 Normalize data 
+	Activity #6 KPI computation requied? 
+	Activity #7 Compute KPIs 
+	Activity #8 Dispatch data to reporting engine 
+	Activity #9 More systems? 
+	Activity #10 End 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

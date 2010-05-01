@@ -1,0 +1,6 @@
+Mon Jul 11 18:22:55 EDT 2005:entering rcvResults thread..
+Mon Jul 11 18:24:08 EDT 2005:entering rcvResults thread..
+Mon Jul 11 18:34:40 EDT 2005:When nitrogen.composers.caxton.com checked IS_perl_RUNNING it expected 0 but got 1 instead. 
+Mon Jul 11 18:34:41 EDT 2005:When nitrogen.composers.caxton.com checked test2 it expected 3 but got 5 instead. 
+Mon Jul 11 18:40:14 EDT 2005:When nitrogen.composers.caxton.com checked IS_perl_RUNNING it expected 0 but got 1 instead. 
+Mon Jul 11 18:40:14 EDT 2005:When nitrogen.composers.caxton.com checked test2 it expected 3 but got 5 instead. 

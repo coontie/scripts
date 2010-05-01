@@ -1,0 +1,7 @@
+<rendezvous url="http://foo.com">
+  <configuration timestamp="20061204114508">
+    <rvrd-parameters>
+      <logging connections="no" subject-data="no" subject-interest="no" />
+    </rvrd-parameters>
+  </configuration>
+</rendezvous>

@@ -1,0 +1,29 @@
+Title: Distribute Static Content
+Actors:
+	DDC System
+	Distribution Partner
+Activities:
+	Activity #1 Start 
+	Activity #2 Check for asset in package 
+	Activity #3 Asset packaged correctly? 
+	Activity #4 Check for metadata in package 
+	Activity #5 Metadata packaged? 
+	Activity #6 Valid feeds in transport profile? 
+	Activity #7 Notify DDC Ops 
+	Activity #8 End 
+	Activity #9 Fetch distribution partner encryption key 
+	Activity #10 Transmit package 
+	Activity #11 Pause and wait for confirmation 
+	Activity #12 Check transmission 
+	Activity #13 Successful? 
+	Activity #14 Log error 
+	Activity #15 Restart required as per transport profile? 
+	Activity #16 Ack success 
+	Activity #17 Fetch distribution profile 
+	Activity #18 Notify content providers 
+	Activity #19 End 
+	Activity #20 Check feeds for validity 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

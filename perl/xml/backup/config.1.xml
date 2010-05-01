@@ -1,0 +1,23 @@
+<config>
+    <server name="cnyp2ps1" component="p2ps">
+      <command type="status">
+	<exec>mon -print SERVICES | grep state | awk '{print $2}'</exec>
+      </command>
+      <command type="serverID">
+	<exec>mon -print SERVERS | grep serverID | awk '{print $2}'</exec>
+      </command>
+    </server>
+    <server name="cnyp2ps2" component="p2ps">
+      <command type="status">
+	<exec>mon -print SERVICES | grep state | awk '{print $2}'</exec>
+      </command>
+      <command type="serverID">
+	<exec>mon -print SERVERS | grep serverID | awk '{print $2}'</exec>
+      </command>
+    </server>
+    <server name="cnysrc1" component="source">
+      <command type="status">
+	<exec>mon -print SERVICES | grep state | awk '{print $2}'</exec>
+      </command>
+    </server>
+</config>

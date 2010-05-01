@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by TIBCO WSDL-->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://xmlns.example.com/1219313139051" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns0="http://www.tibco.com/schemas/Authentication_Webservice/SharedResources/Schemas/Schema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="Untitled" targetNamespace="http://xmlns.example.com/1219313139051">
+    <wsdl:types>
+        <xs:schema xmlns="http://www.tibco.com/schemas/Authentication_Webservice/SharedResources/Schemas/Schema.xsd" targetNamespace="http://www.tibco.com/schemas/Authentication_Webservice/SharedResources/Schemas/Schema.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="UserInput">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="UserName" type="xs:string"/>
+                        <xs:element name="UserPassword" type="xs:string"/>
+                        <xs:element name="Domain" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:service name="Authenticate_User-service">
+        <wsdl:port name="AuthenticateUser_PortTypeEndpoint1" binding="tns:AuthenticateUser_PortTypeEndpoint1Binding">
+            <soap:address location="http://am-usa01-tst13:8090/BusinessProcess/Authenticate_User-service1.serviceagent/AuthenticateUser_PortTypeEndpoint1"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="AuthenticateUser_PortType">
+        <wsdl:operation name="Authenticate_User">
+            <wsdl:input message="tns:User_Input"/>
+            <wsdl:output message="tns:User_Output"/>
+            <wsdl:fault name="fault" message="tns:User_Fault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="AuthenticateUser_PortTypeEndpoint1Binding" type="tns:AuthenticateUser_PortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Authenticate_User">
+            <soap:operation style="document" soapAction="/BusinessProcess/Authenticate_User-service1.serviceagent/AuthenticateUser_PortTypeEndpoint1/Authenticate_User"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="UserInput"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="Response"/>
+            </wsdl:output>
+            <wsdl:fault name="fault">
+                <soap:fault use="literal" name="fault"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="User_Input">
+        <wsdl:part name="UserInput" element="ns0:UserInput"/>
+    </wsdl:message>
+    <wsdl:message name="User_Output">
+        <wsdl:part name="Response" type="xs:string"/>
+    </wsdl:message>
+    <wsdl:message name="User_Fault">
+        <wsdl:part name="Fault" type="xs:string"/>
+    </wsdl:message>
+</wsdl:definitions>

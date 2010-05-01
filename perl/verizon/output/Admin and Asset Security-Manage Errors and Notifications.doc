@@ -1,0 +1,16 @@
+Title: Manage Errors and Notifications
+Actors:
+	DDC Ops User
+	DDC System
+Activities:
+	Activity #1 Start 
+	Activity #2 Alert is generated 
+	Activity #3 Notify DDC Ops 
+	Activity #4 Perform corrective action 
+	Activity #5 Confirm error resolution 
+	Activity #6 Display confirmation 
+	Activity #7 End 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

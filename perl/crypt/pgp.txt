@@ -1,0 +1,1 @@
+Crypt::OpenPGP::Key::Public::RSA=HASH(0x88c9c2c)

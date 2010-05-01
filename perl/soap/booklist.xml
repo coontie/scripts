@@ -1,0 +1,8 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<inputMessage>
+            <ns0:Order_Status_Input_Root xmlns:ns0 = "http://www.tibco.com/schemas/MER_OTC_GetCustomerAccountInfo/SharedResources/Schemas/Schema.xsd">
+                        <ns0:Order_Status_Input_Row>
+                                    <ns0:Customer_Id>92214</ns0:Customer_Id>
+                        </ns0:Order_Status_Input_Row>
+            </ns0:Order_Status_Input_Root>
+</inputMessage>

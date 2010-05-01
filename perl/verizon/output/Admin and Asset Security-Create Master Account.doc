@@ -1,0 +1,34 @@
+Title: Create Master Account
+Actors:
+	User
+	DDC
+Activities:
+	Activity #1 Start 
+	Activity #2 Opt to create a master account 
+	Activity #3 Log into DDC admin console 
+	Activity #4 Present menu of available choices 
+	Activity #5 Choose "Create Master Account" option 
+	Activity #6 Present "Create Master Account" form 
+	Activity #7 Fill out form 
+	Activity #8 Submit form 
+	Activity #9 Validate form 
+	Activity #10 Submission valid? 
+	Activity #11 Pass control back to user 
+	Activity #12 Inquire whether user wants to save 
+	Activity #13 User makes a choice to save or not 
+	Activity #14 Save newly created account? 
+	Activity #15 Persist to master user DB 
+	Activity #16 Notify users 
+	Activity #17 Notify DDC Ops 
+	Activity #18 Notify requestor 
+	Activity #19 Notify master account admin 
+	Activity #20 Join 
+	Activity #21 Generate random password 
+	Activity #22 Present password to user 
+	Activity #23 End 
+	Activity #24 Validate user 
+	Activity #25 Validate access 
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 

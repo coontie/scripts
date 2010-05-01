@@ -1,0 +1,18 @@
+Title: Create BOM Template
+Actors:
+	User ( DDC Ops User or Master Account Admin)
+	DDC System
+Activities:
+	Activity #1  
+	Activity #2 User opts to Create a New Bill Of Materials Template 
+	Activity #3 Display Create New Bill of Materials Template form 
+	Activity #4 Enter Bill of Materials Template name and description 
+	Activity #5 Display Transformation selection screen 
+	Activity #6 User Selects Transformation Step 
+	Activity #7 Is Another Transformation step required ? 
+	Activity #8 Save as a new Bill of Materials Template 
+	Activity #9  
+Preconditions:
+Postconditions:
+Assumptions: 
+Notes: 
