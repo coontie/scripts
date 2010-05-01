@@ -4,6 +4,7 @@ use strict;
 
 use XML::XPath;
 use XML::XPath::XMLParser;
+use OpenOffice::OODoc;
 
 my @emxFileList = `ls ~/documents/workspace/Verizon/*.emx`;
 
