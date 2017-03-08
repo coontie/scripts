@@ -7,8 +7,8 @@ SNS_NAME="ProdWest-Logstash-SNS"
 SQS_NAME="ProdWest-Logstash-SQS"
 ELB_PROTOCOL="TCP"
 ELB_PORT=5043
-SUBNETS="subnet-67995f02 subnet-ca4c558c subnet-d1a045a6"
-SECURITY_GROUPS="sg-0b76ef6e sg-a09536c5" #these are default and Logging SGs
+SUBNETS="subnet-xxxxx subnet-xxxxx subnet-xxxxx"
+SECURITY_GROUPS="sg-xxxxx sg-xxxxx" #these are default and Logging SGs
 
 function error_exit
 {
