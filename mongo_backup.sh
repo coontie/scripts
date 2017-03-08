@@ -5,15 +5,13 @@
 set -o pipefail
 
 #define the constants
-connectionString="rs0/stgmdb01.pf-labs.net:27017,stgmdb02.pf-labs.net:27017,stgmdb03.pf-labs.net:27017"
-#backupUserName=backup_mongo_user
-#backupPassword='c1P2AsV3s7E3Nm7'
-backupUserName=ipaas_mongo_user
-backupPassword=ipaas_mongo_password
+connectionString="rs0/xxxxxxxxx:27017,xxxxxxxxx:27017,xxxxxxxxx:27017"
+backupUserName=xxxxxxxxx
+backupPassword=xxxxxxxxx
 dateTimeStamp=$(date "+%Y.%m.%d-%H.%M.%S")
-bucketName=pf-nonprod-backups
+bucketName=xxxxxxxxx
 environment=STG
-fromAddress="iPaas-Developers@peoplefluent.com"
+fromAddress="xxxxxxxxx"
 hostname=$(hostname)
 archiveName=mongobackup-"$dateTimeStamp"-"$hostname".gz
 currentYear=$(date "+%Y")
@@ -42,7 +40,7 @@ EOF
 function create_destination_email {
   cat <<EOF > ./destination.json
   {
-    "ToAddresses":  ["iPaas-Developers@peoplefluent.com"],
+    "ToAddresses":  ["xxxxxxxxx"],
     "BccAddresses": []
   }
 EOF
